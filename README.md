@@ -1,6 +1,6 @@
-# Android Debugging Fundamentals: Materials
+# Advanced Android Debugging: Materials
 
-This repo contains all the downloadable materials and projects associated with the **[Android Debugging Fundamentals](https://www.raywenderlich.com/books)** from [raywenderlich.com](https://www.raywenderlich.com).
+This repo contains all the downloadable materials and projects associated with the **[Advanced Android Debugging](https://www.raywenderlich.com/books)** from [raywenderlich.com](https://www.raywenderlich.com).
 
 Each edition has its own branch, named `editions/[EDITION]`. The default branch for this repo is for the most recent edition.
 
