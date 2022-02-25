@@ -86,6 +86,9 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
     handleIntent(intent)
     addBackStackListener()
     scheduleJobs()
+
+    // TODO: Chapter 11 - Prevent unnecessary network calls
+    performSearch("")
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -180,10 +183,10 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   }
 
   private fun handleIntent(intent: Intent) {
-    val query = intent.getStringExtra(SearchManager.QUERY) ?: ""
-    performSearch(query)
-
-    // TODO: Chapter 11 - Add checks to prevent unnecessary network calls
+    val query = intent.getStringExtra(SearchManager.QUERY)
+    if (!query.isNullOrBlank()) {
+      performSearch(query)
+    }
 
     val podcastFeedUrl = intent.getStringExtra(EpisodeUpdateWorker.EXTRA_FEED_URL)
     if (podcastFeedUrl != null) {
