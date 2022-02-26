@@ -38,11 +38,9 @@ import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -68,8 +66,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
 
-private const val TAG = "PodcastActivity"
-
 class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
     OnPodcastDetailsListener {
 
@@ -90,11 +86,9 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
     handleIntent(intent)
     addBackStackListener()
     scheduleJobs()
-  }
 
-  override fun onResume() {
-    super.onResume()
-    Log.d(TAG, "onResume() called.")
+    // TODO: Chapter 11 - Prevent unnecessary network calls
+    performSearch("")
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -132,25 +126,20 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
 
   override fun onNewIntent(intent: Intent) {
     super.onNewIntent(intent)
-    Log.d(TAG, "onNewIntent() called with intent: ${intent.action}.")
+    // TODO 1
     setIntent(intent)
     handleIntent(intent)
   }
 
 
   override fun onShowDetails(podcastSummaryViewData: SearchViewModel.PodcastSummaryViewData) {
-    if (podcastSummaryViewData.feedUrl == null) {
-      Log.w(TAG, "podcastSummaryViewData for podcast named '${podcastSummaryViewData.name}' feedUrl is null.")
-      Toast.makeText(this, getString(R.string.podcast_feed_unavailable_error), Toast.LENGTH_LONG).show();
-      return
-    } else {
-      showProgressBar()
-      Log.d(TAG, "Retrieving podcast feed for podcast named '${podcastSummaryViewData.name}'")
-      podcastViewModel.viewModelScope.launch(context = Dispatchers.Main) {
-        podcastViewModel.getPodcast(podcastSummaryViewData)
-        hideProgressBar()
-        showDetailsFragment()
-      }
+    podcastSummaryViewData.feedUrl ?: return
+    showProgressBar()
+    // TODO 2
+    podcastViewModel.viewModelScope.launch(context = Dispatchers.Main) {
+      podcastViewModel.getPodcast(podcastSummaryViewData)
+      hideProgressBar()
+      showDetailsFragment()
     }
   }
 
@@ -194,10 +183,10 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   }
 
   private fun handleIntent(intent: Intent) {
-    val query = intent.getStringExtra(SearchManager.QUERY) ?: ""
-    performSearch(query)
-
-    // TODO: Chapter 11 - Add checks to prevent unnecessary network calls
+    val query = intent.getStringExtra(SearchManager.QUERY)
+    if (!query.isNullOrBlank()) {
+      performSearch(query)
+    }
 
     val podcastFeedUrl = intent.getStringExtra(EpisodeUpdateWorker.EXTRA_FEED_URL)
     if (podcastFeedUrl != null) {
