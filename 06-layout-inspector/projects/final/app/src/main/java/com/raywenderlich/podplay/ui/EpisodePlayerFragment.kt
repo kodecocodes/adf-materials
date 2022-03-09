@@ -71,7 +71,8 @@ import com.raywenderlich.podplay.viewmodel.PodcastViewModel
 
 class EpisodePlayerFragment : Fragment() {
 
-  private lateinit var databinding: FragmentEpisodePlayerBinding
+  private var _databinding: FragmentEpisodePlayerBinding? = null
+  private val databinding get() = _databinding!!
 
   private val podcastViewModel: PodcastViewModel by activityViewModels()
   private lateinit var mediaBrowser: MediaBrowserCompat
@@ -102,7 +103,7 @@ class EpisodePlayerFragment : Fragment() {
   override fun onCreateView(inflater: LayoutInflater,
                             container: ViewGroup?,
                             savedInstanceState: Bundle?): View {
-    databinding = FragmentEpisodePlayerBinding.inflate(inflater, container, false)
+    _databinding = FragmentEpisodePlayerBinding.inflate(inflater, container, false)
     return databinding.root
   }
 
@@ -457,4 +458,8 @@ class EpisodePlayerFragment : Fragment() {
     }
   }
 
+  override fun onDestroyView() {
+    super.onDestroyView()
+    _databinding = null
+  }
 }
