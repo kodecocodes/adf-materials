@@ -51,7 +51,8 @@ import com.raywenderlich.podplay.viewmodel.PodcastViewModel
 class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapterListener {
 
   private val podcastViewModel: PodcastViewModel by activityViewModels()
-  private lateinit var databinding: FragmentPodcastDetailsBinding
+  private var _databinding: FragmentPodcastDetailsBinding? = null
+  private val databinding get() = _databinding!!
   private lateinit var episodeListAdapter: EpisodeListAdapter
   private var listener: OnPodcastDetailsListener? = null
 
@@ -68,7 +69,7 @@ class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapter
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View {
-    databinding = FragmentPodcastDetailsBinding.inflate(inflater, container, false)
+    _databinding = FragmentPodcastDetailsBinding.inflate(inflater, container, false)
     return databinding.root
   }
 
@@ -149,5 +150,10 @@ class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapter
 
   override fun onSelectedEpisode(episodeViewData: PodcastViewModel.EpisodeViewData) {
     listener?.onShowEpisodePlayer(episodeViewData)
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    _databinding = null
   }
 }
