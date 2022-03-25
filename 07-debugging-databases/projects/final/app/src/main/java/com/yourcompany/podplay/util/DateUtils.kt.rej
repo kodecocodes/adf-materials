@@ -1,0 +1,10 @@
+diff a/07-debugging-databases/projects/final/app/src/main/java/com/yourcompany/podplay/util/DateUtils.kt b/07-debugging-databases/projects/final/app/src/main/java/com/yourcompany/podplay/util/DateUtils.kt	(rejected hunks)
+@@ -32,7 +32,7 @@
+  *   THE SOFTWARE.
+  */
+ 
+-package com.raywenderlich.podplay.util
++package com.yourcompany.podplay.util
+ 
+ import java.text.DateFormat
+ import java.text.SimpleDateFormat
