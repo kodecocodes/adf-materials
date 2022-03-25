@@ -33,7 +33,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.raywenderlich.podplay">
+  package="com.yourcompany.podplay">
 
   <application
     android:allowBackup="false"
