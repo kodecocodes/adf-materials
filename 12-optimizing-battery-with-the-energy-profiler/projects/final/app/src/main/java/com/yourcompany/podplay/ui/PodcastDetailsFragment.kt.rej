@@ -1,0 +1,44 @@
+diff a/12-optimizing-battery-with-the-energy-profiler/projects/final/app/src/main/java/com/yourcompany/podplay/ui/PodcastDetailsFragment.kt b/12-optimizing-battery-with-the-energy-profiler/projects/final/app/src/main/java/com/yourcompany/podplay/ui/PodcastDetailsFragment.kt	(rejected hunks)
+@@ -42,16 +42,17 @@ import androidx.fragment.app.Fragment
+ import androidx.fragment.app.activityViewModels
+ import androidx.recyclerview.widget.DividerItemDecoration
+ import androidx.recyclerview.widget.LinearLayoutManager
+-import com.raywenderlich.podplay.R
+-import com.raywenderlich.podplay.adapter.EpisodeListAdapter
+-import com.raywenderlich.podplay.databinding.FragmentPodcastDetailsBinding
+-import com.raywenderlich.podplay.util.GlideApp
+-import com.raywenderlich.podplay.viewmodel.PodcastViewModel
++import com.yourcompany.podplay.R
++import com.yourcompany.podplay.adapter.EpisodeListAdapter
++import com.yourcompany.podplay.databinding.FragmentPodcastDetailsBinding
++import com.yourcompany.podplay.util.GlideApp
++import com.yourcompany.podplay.viewmodel.PodcastViewModel
+ 
+ class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapterListener {
+ 
+   private val podcastViewModel: PodcastViewModel by activityViewModels()
+-  private lateinit var databinding: FragmentPodcastDetailsBinding
++  private var _databinding: FragmentPodcastDetailsBinding? = null
++  private val databinding get() = _databinding!!
+   private lateinit var episodeListAdapter: EpisodeListAdapter
+   private var listener: OnPodcastDetailsListener? = null
+ 
+@@ -68,7 +69,7 @@ class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapter
+ 
+   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                             savedInstanceState: Bundle?): View {
+-    databinding = FragmentPodcastDetailsBinding.inflate(inflater, container, false)
++    _databinding = FragmentPodcastDetailsBinding.inflate(inflater, container, false)
+     return databinding.root
+   }
+ 
+@@ -150,4 +151,9 @@ class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapter
+   override fun onSelectedEpisode(episodeViewData: PodcastViewModel.EpisodeViewData) {
+     listener?.onShowEpisodePlayer(episodeViewData)
+   }
++
++  override fun onDestroyView() {
++    super.onDestroyView()
++    _databinding = null
++  }
+ }
