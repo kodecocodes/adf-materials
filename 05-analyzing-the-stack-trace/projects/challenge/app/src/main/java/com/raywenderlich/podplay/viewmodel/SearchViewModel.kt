@@ -32,13 +32,13 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.viewmodel
+package com.yourcompany.podplay.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.raywenderlich.podplay.repository.ItunesRepo
-import com.raywenderlich.podplay.service.PodcastResponse
-import com.raywenderlich.podplay.util.DateUtils
+import com.yourcompany.podplay.repository.ItunesRepo
+import com.yourcompany.podplay.service.PodcastResponse
+import com.yourcompany.podplay.util.DateUtils
 
 class SearchViewModel(application: Application) : AndroidViewModel(application) {
 

@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.util
+package com.yourcompany.podplay.util
 
 import android.os.Build
 import android.text.Html

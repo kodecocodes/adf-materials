@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.adapter
+package com.yourcompany.podplay.adapter
 
 import android.app.Activity
 import android.view.LayoutInflater
@@ -41,8 +41,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.raywenderlich.podplay.databinding.SearchItemBinding
-import com.raywenderlich.podplay.viewmodel.SearchViewModel.PodcastSummaryViewData
+import com.yourcompany.podplay.databinding.SearchItemBinding
+import com.yourcompany.podplay.viewmodel.SearchViewModel.PodcastSummaryViewData
 
 class PodcastListAdapter(
     private var podcastSummaryViewList: List<PodcastSummaryViewData>?,

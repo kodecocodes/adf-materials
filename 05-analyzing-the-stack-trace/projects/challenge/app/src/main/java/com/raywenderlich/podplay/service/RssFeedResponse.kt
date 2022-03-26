@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.service
+package com.yourcompany.podplay.service
 
 import java.util.*
 

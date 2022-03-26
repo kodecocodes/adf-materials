@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.service
+package com.yourcompany.podplay.service
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -53,9 +53,9 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.media.MediaBrowserServiceCompat
 import androidx.media.session.MediaButtonReceiver
-import com.raywenderlich.podplay.R
-import com.raywenderlich.podplay.service.PodplayMediaCallback.PodplayMediaListener
-import com.raywenderlich.podplay.ui.PodcastActivity
+import com.yourcompany.podplay.R
+import com.yourcompany.podplay.service.PodplayMediaCallback.PodplayMediaListener
+import com.yourcompany.podplay.ui.PodcastActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.net.URL

@@ -32,15 +32,15 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.repository
+package com.yourcompany.podplay.repository
 
 import androidx.lifecycle.LiveData
-import com.raywenderlich.podplay.db.PodcastDao
-import com.raywenderlich.podplay.model.Episode
-import com.raywenderlich.podplay.model.Podcast
-import com.raywenderlich.podplay.service.RssFeedResponse
-import com.raywenderlich.podplay.service.RssFeedService
-import com.raywenderlich.podplay.util.DateUtils
+import com.yourcompany.podplay.db.PodcastDao
+import com.yourcompany.podplay.model.Episode
+import com.yourcompany.podplay.model.Podcast
+import com.yourcompany.podplay.service.RssFeedResponse
+import com.yourcompany.podplay.service.RssFeedService
+import com.yourcompany.podplay.util.DateUtils
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 

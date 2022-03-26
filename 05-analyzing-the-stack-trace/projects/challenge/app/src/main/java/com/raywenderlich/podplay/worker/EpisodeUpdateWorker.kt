@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.worker
+package com.yourcompany.podplay.worker
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -44,11 +44,11 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.raywenderlich.podplay.R
-import com.raywenderlich.podplay.db.PodPlayDatabase
-import com.raywenderlich.podplay.repository.PodcastRepo
-import com.raywenderlich.podplay.service.RssFeedService
-import com.raywenderlich.podplay.ui.PodcastActivity
+import com.yourcompany.podplay.R
+import com.yourcompany.podplay.db.PodPlayDatabase
+import com.yourcompany.podplay.repository.PodcastRepo
+import com.yourcompany.podplay.service.RssFeedService
+import com.yourcompany.podplay.ui.PodcastActivity
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 

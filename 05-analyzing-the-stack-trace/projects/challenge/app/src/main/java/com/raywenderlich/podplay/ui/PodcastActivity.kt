@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.ui
+package com.yourcompany.podplay.ui
 
 import android.app.SearchManager
 import android.content.Context
@@ -50,18 +50,18 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.*
-import com.raywenderlich.podplay.R
-import com.raywenderlich.podplay.adapter.PodcastListAdapter
-import com.raywenderlich.podplay.adapter.PodcastListAdapter.PodcastListAdapterListener
-import com.raywenderlich.podplay.databinding.ActivityPodcastBinding
-import com.raywenderlich.podplay.repository.ItunesRepo
-import com.raywenderlich.podplay.repository.PodcastRepo
-import com.raywenderlich.podplay.service.ItunesService
-import com.raywenderlich.podplay.service.RssFeedService
-import com.raywenderlich.podplay.ui.PodcastDetailsFragment.OnPodcastDetailsListener
-import com.raywenderlich.podplay.viewmodel.PodcastViewModel
-import com.raywenderlich.podplay.viewmodel.SearchViewModel
-import com.raywenderlich.podplay.worker.EpisodeUpdateWorker
+import com.yourcompany.podplay.R
+import com.yourcompany.podplay.adapter.PodcastListAdapter
+import com.yourcompany.podplay.adapter.PodcastListAdapter.PodcastListAdapterListener
+import com.yourcompany.podplay.databinding.ActivityPodcastBinding
+import com.yourcompany.podplay.repository.ItunesRepo
+import com.yourcompany.podplay.repository.PodcastRepo
+import com.yourcompany.podplay.service.ItunesService
+import com.yourcompany.podplay.service.RssFeedService
+import com.yourcompany.podplay.ui.PodcastDetailsFragment.OnPodcastDetailsListener
+import com.yourcompany.podplay.viewmodel.PodcastViewModel
+import com.yourcompany.podplay.viewmodel.SearchViewModel
+import com.yourcompany.podplay.worker.EpisodeUpdateWorker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -308,7 +308,7 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
 
   companion object {
     private const val TAG_DETAILS_FRAGMENT = "DetailsFragment"
-    private const val TAG_EPISODE_UPDATE_JOB = "com.raywenderlich.podplay.episodes"
+    private const val TAG_EPISODE_UPDATE_JOB = "com.yourcompany.podplay.episodes"
     private const val TAG_PLAYER_FRAGMENT = "PlayerFragment"
   }
 

@@ -1,4 +1,4 @@
-package com.raywenderlich.podplay.util
+package com.yourcompany.podplay.util
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

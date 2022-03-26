@@ -32,9 +32,9 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.repository
+package com.yourcompany.podplay.repository
 
-import com.raywenderlich.podplay.service.ItunesService
+import com.yourcompany.podplay.service.ItunesService
 
 class ItunesRepo(private val itunesService: ItunesService) {
 

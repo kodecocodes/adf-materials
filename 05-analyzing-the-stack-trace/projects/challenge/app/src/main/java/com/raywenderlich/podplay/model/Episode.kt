@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.model
+package com.yourcompany.podplay.model
 
 import androidx.room.Entity
 import androidx.room.ForeignKey

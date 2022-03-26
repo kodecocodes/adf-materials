@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.service
+package com.yourcompany.podplay.service
 
 import android.content.Context
 import android.media.AudioAttributes

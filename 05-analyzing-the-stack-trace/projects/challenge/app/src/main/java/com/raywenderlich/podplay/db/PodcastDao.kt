@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.db
+package com.yourcompany.podplay.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -40,8 +40,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.raywenderlich.podplay.model.Episode
-import com.raywenderlich.podplay.model.Podcast
+import com.yourcompany.podplay.model.Episode
+import com.yourcompany.podplay.model.Podcast
 
 @Dao
 interface PodcastDao {

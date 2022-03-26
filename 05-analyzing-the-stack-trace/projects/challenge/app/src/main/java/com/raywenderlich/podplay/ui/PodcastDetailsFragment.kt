@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.ui
+package com.yourcompany.podplay.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -42,11 +42,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.raywenderlich.podplay.R
-import com.raywenderlich.podplay.adapter.EpisodeListAdapter
-import com.raywenderlich.podplay.databinding.FragmentPodcastDetailsBinding
-import com.raywenderlich.podplay.util.GlideApp
-import com.raywenderlich.podplay.viewmodel.PodcastViewModel
+import com.yourcompany.podplay.R
+import com.yourcompany.podplay.adapter.EpisodeListAdapter
+import com.yourcompany.podplay.databinding.FragmentPodcastDetailsBinding
+import com.yourcompany.podplay.util.GlideApp
+import com.yourcompany.podplay.viewmodel.PodcastViewModel
 
 class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapterListener {
 

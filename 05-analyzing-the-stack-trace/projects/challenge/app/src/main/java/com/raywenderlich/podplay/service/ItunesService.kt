@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.service
+package com.yourcompany.podplay.service
 
 import retrofit2.Response
 import retrofit2.Retrofit

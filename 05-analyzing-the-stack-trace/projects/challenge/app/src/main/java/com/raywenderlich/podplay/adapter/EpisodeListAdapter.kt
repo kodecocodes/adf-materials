@@ -32,16 +32,16 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.adapter
+package com.yourcompany.podplay.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.raywenderlich.podplay.databinding.EpisodeItemBinding
-import com.raywenderlich.podplay.util.DateUtils
-import com.raywenderlich.podplay.util.HtmlUtils
-import com.raywenderlich.podplay.viewmodel.PodcastViewModel
+import com.yourcompany.podplay.databinding.EpisodeItemBinding
+import com.yourcompany.podplay.util.DateUtils
+import com.yourcompany.podplay.util.HtmlUtils
+import com.yourcompany.podplay.viewmodel.PodcastViewModel
 
 class EpisodeListAdapter(
     private var episodeViewList: List<PodcastViewModel.EpisodeViewData>?,

@@ -1,4 +1,4 @@
-package com.raywenderlich.podplay.util
+package com.yourcompany.podplay.util
 
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule

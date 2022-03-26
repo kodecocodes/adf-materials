@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.util
+package com.yourcompany.podplay.util
 
 import java.text.DateFormat
 import java.text.SimpleDateFormat
