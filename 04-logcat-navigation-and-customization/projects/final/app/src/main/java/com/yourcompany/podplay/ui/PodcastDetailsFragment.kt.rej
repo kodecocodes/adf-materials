@@ -3,11 +3,11 @@ diff a/04-logcat-navigation-and-customization/projects/final/app/src/main/java/c
  import androidx.fragment.app.activityViewModels
  import androidx.recyclerview.widget.DividerItemDecoration
  import androidx.recyclerview.widget.LinearLayoutManager
--import com.raywenderlich.podplay.R
--import com.raywenderlich.podplay.adapter.EpisodeListAdapter
--import com.raywenderlich.podplay.databinding.FragmentPodcastDetailsBinding
--import com.raywenderlich.podplay.util.GlideApp
--import com.raywenderlich.podplay.viewmodel.PodcastViewModel
+-import com.yourcompany.podplay.R
+-import com.yourcompany.podplay.adapter.EpisodeListAdapter
+-import com.yourcompany.podplay.databinding.FragmentPodcastDetailsBinding
+-import com.yourcompany.podplay.util.GlideApp
+-import com.yourcompany.podplay.viewmodel.PodcastViewModel
 +import com.yourcompany.podplay.R
 +import com.yourcompany.podplay.adapter.EpisodeListAdapter
 +import com.yourcompany.podplay.databinding.FragmentPodcastDetailsBinding

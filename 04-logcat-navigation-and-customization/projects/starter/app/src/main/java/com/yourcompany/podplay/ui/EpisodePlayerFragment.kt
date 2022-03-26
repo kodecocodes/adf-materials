@@ -60,13 +60,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
-import com.raywenderlich.podplay.databinding.FragmentEpisodePlayerBinding
-import com.raywenderlich.podplay.service.PodplayMediaCallback
-import com.raywenderlich.podplay.service.PodplayMediaCallback.Companion.CMD_CHANGESPEED
-import com.raywenderlich.podplay.service.PodplayMediaCallback.Companion.CMD_EXTRA_SPEED
-import com.raywenderlich.podplay.service.PodplayMediaService
-import com.raywenderlich.podplay.util.HtmlUtils
-import com.raywenderlich.podplay.viewmodel.PodcastViewModel
+import com.yourcompany.podplay.databinding.FragmentEpisodePlayerBinding
+import com.yourcompany.podplay.service.PodplayMediaCallback
+import com.yourcompany.podplay.service.PodplayMediaCallback.Companion.CMD_CHANGESPEED
+import com.yourcompany.podplay.service.PodplayMediaCallback.Companion.CMD_EXTRA_SPEED
+import com.yourcompany.podplay.service.PodplayMediaService
+import com.yourcompany.podplay.util.HtmlUtils
+import com.yourcompany.podplay.viewmodel.PodcastViewModel
 
 
 class EpisodePlayerFragment : Fragment() {
