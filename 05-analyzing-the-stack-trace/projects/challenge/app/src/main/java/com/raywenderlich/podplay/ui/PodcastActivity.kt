@@ -94,7 +94,7 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
 
   override fun onResume() {
     super.onResume()
-    Log.d(TAG, "onResume() called.")
+    Log.i(TAG, "onResume() called.")
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -132,7 +132,7 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
 
   override fun onNewIntent(intent: Intent) {
     super.onNewIntent(intent)
-    Log.d(TAG, "onNewIntent() called with intent: ${intent.action}.")
+    Log.i(TAG, "onNewIntent() called with intent: ${intent.action}.")
     setIntent(intent)
     handleIntent(intent)
   }
