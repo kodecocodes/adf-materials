@@ -1,0 +1,27 @@
+diff a/04-logcat-navigation-and-customization/projects/final/app/src/main/java/com/yourcompany/podplay/viewmodel/PodcastViewModel.kt b/04-logcat-navigation-and-customization/projects/final/app/src/main/java/com/yourcompany/podplay/viewmodel/PodcastViewModel.kt	(rejected hunks)
+@@ -32,17 +32,17 @@
+  *   THE SOFTWARE.
+  */
+ 
+-package com.yourcompany.podplay.viewmodel
++package com.yourcompany.podplay.viewmodel
+ 
+ import android.app.Application
+ import androidx.lifecycle.*
+-import com.yourcompany.podplay.db.PodPlayDatabase
+-import com.yourcompany.podplay.db.PodcastDao
+-import com.yourcompany.podplay.model.Episode
+-import com.yourcompany.podplay.model.Podcast
+-import com.yourcompany.podplay.repository.PodcastRepo
+-import com.yourcompany.podplay.util.DateUtils
+-import com.yourcompany.podplay.viewmodel.SearchViewModel.PodcastSummaryViewData
++import com.yourcompany.podplay.db.PodPlayDatabase
++import com.yourcompany.podplay.db.PodcastDao
++import com.yourcompany.podplay.model.Episode
++import com.yourcompany.podplay.model.Podcast
++import com.yourcompany.podplay.repository.PodcastRepo
++import com.yourcompany.podplay.util.DateUtils
++import com.yourcompany.podplay.viewmodel.SearchViewModel.PodcastSummaryViewData
+ import java.util.*
+ 
+ class PodcastViewModel(application: Application) : AndroidViewModel(application) {
