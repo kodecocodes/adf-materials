@@ -1,0 +1,10 @@
+diff a/10-profile-memory-usage/projects/final/app/build.gradle b/10-profile-memory-usage/projects/final/app/build.gradle	(rejected hunks)
+@@ -39,7 +39,7 @@ apply plugin: 'kotlin-kapt'
+ android {
+   compileSdkVersion 32
+   defaultConfig {
+-    applicationId "com.raywenderlich.podplay"
++    applicationId "com.yourcompany.podplay"
+     minSdkVersion 23
+     targetSdkVersion 32
+     versionCode 1
