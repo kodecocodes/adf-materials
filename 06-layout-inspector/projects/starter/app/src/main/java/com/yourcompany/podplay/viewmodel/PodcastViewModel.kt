@@ -32,18 +32,18 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.viewmodel
+package com.yourcompany.podplay.viewmodel
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.raywenderlich.podplay.db.PodPlayDatabase
-import com.raywenderlich.podplay.db.PodcastDao
-import com.raywenderlich.podplay.model.Episode
-import com.raywenderlich.podplay.model.Podcast
-import com.raywenderlich.podplay.repository.PodcastRepo
-import com.raywenderlich.podplay.util.DateUtils
-import com.raywenderlich.podplay.viewmodel.SearchViewModel.PodcastSummaryViewData
+import com.yourcompany.podplay.db.PodPlayDatabase
+import com.yourcompany.podplay.db.PodcastDao
+import com.yourcompany.podplay.model.Episode
+import com.yourcompany.podplay.model.Podcast
+import com.yourcompany.podplay.repository.PodcastRepo
+import com.yourcompany.podplay.util.DateUtils
+import com.yourcompany.podplay.viewmodel.SearchViewModel.PodcastSummaryViewData
 import java.util.*
 import kotlin.system.measureTimeMillis
 
