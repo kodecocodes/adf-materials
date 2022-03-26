@@ -65,6 +65,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
+import android.util.Log
+import android.widget.Toast
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
+
+private const val TAG = "PodcastActivity"
 
 class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
     OnPodcastDetailsListener {
@@ -89,6 +95,11 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
 
     // TODO: Chapter 11 - Prevent unnecessary network calls
     performSearch("")
+  }
+
+  override fun onResume() {
+    super.onResume()
+    Log.i(TAG, "onResume() called.")
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -126,20 +137,25 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
 
   override fun onNewIntent(intent: Intent) {
     super.onNewIntent(intent)
-    // TODO 1
+    Log.i(TAG, "onNewIntent() called with intent: ${intent.action}.")
     setIntent(intent)
     handleIntent(intent)
   }
 
 
   override fun onShowDetails(podcastSummaryViewData: SearchViewModel.PodcastSummaryViewData) {
-    podcastSummaryViewData.feedUrl ?: return
-    showProgressBar()
-    // TODO 2
-    podcastViewModel.viewModelScope.launch(context = Dispatchers.Main) {
-      podcastViewModel.getPodcast(podcastSummaryViewData)
-      hideProgressBar()
-      showDetailsFragment()
+    if (podcastSummaryViewData.feedUrl == null) {
+      Log.w(TAG, "podcastSummaryViewData for podcast named '${podcastSummaryViewData.name}' feedUrl is null.")
+      Toast.makeText(this, getString(R.string.podcast_feed_unavailable_error), Toast.LENGTH_LONG).show();
+      return
+    } else {
+      showProgressBar()
+      Log.d(TAG, "Retrieving podcast feed for podcast named '${podcastSummaryViewData.name}'")
+      podcastViewModel.viewModelScope.launch(context = Dispatchers.Main) {
+        podcastViewModel.getPodcast(podcastSummaryViewData)
+        hideProgressBar()
+        showDetailsFragment()
+      }
     }
   }
 
