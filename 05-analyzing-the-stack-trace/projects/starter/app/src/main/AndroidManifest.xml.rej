@@ -1,0 +1,10 @@
+diff a/05-analyzing-the-stack-trace/projects/starter/app/src/main/AndroidManifest.xml b/05-analyzing-the-stack-trace/projects/starter/app/src/main/AndroidManifest.xml	(rejected hunks)
+@@ -33,7 +33,7 @@
+   -->
+ 
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-  package="com.raywenderlich.podplay">
++  package="com.yourcompany.podplay">
+ 
+   <application
+     android:allowBackup="false"

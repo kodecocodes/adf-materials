@@ -1,0 +1,10 @@
+diff a/05-analyzing-the-stack-trace/projects/final/app/src/main/res/layout/activity_podcast.xml b/05-analyzing-the-stack-trace/projects/final/app/src/main/res/layout/activity_podcast.xml	(rejected hunks)
+@@ -37,7 +37,7 @@
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+-  tools:context="com.raywenderlich.podplay.ui.PodcastActivity">
++  tools:context="com.yourcompany.podplay.ui.PodcastActivity">
+ 
+   <Button
+     android:id="@+id/searchForPodcastsButton"
