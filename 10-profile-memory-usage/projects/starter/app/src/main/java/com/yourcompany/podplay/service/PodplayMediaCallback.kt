@@ -90,7 +90,7 @@ class PodplayMediaCallback(
 
   override fun onPlay() {
     super.onPlay()
-    Log.v(TAG, "onPlay() called.")
+    Log.i(TAG, "onPlay() called.")
 
     if (ensureAudioFocus()) {
       mediaSession.isActive = true
@@ -105,13 +105,13 @@ class PodplayMediaCallback(
 
   override fun onStop() {
     super.onStop()
-    Log.v(TAG, "onStop() called.")
+    Log.i(TAG, "onStop() called.")
     stopPlaying()
   }
 
   override fun onPause() {
     super.onPause()
-    Log.v(TAG, "onPause() called.")
+    Log.i(TAG, "onPause() called.")
     pausePlaying()
   }
 
@@ -172,7 +172,7 @@ class PodplayMediaCallback(
   }
 
   private fun initializeMediaPlayer() {
-    Log.v(TAG, "initializeMediaPlayer() called.")
+    Log.i(TAG, "initializeMediaPlayer() called.")
 
     if (mediaPlayer == null) {
       mediaPlayer = MediaPlayer()
@@ -239,7 +239,7 @@ class PodplayMediaCallback(
   }
 
   private fun prepareMedia() {
-    Log.v(TAG, "prepareMedia() called.")
+    Log.i(TAG, "prepareMedia() called.")
 
     if (newMedia) {
       newMedia = false
@@ -269,7 +269,7 @@ class PodplayMediaCallback(
   }
 
   private fun startPlaying() {
-    Log.v(TAG, "startPlaying() called.")
+    Log.i(TAG, "startPlaying() called.")
 
     mediaPlayer?.let { mediaPlayer ->
       if (!mediaPlayer.isPlaying) {
