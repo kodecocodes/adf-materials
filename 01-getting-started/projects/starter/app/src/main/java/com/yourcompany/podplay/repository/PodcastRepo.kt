@@ -79,8 +79,9 @@ class PodcastRepo(private var feedService: RssFeedService,
   }
 
   private fun rssResponseToPodcast(
-      feedUrl: String, imageUrl: String, rssResponse: RssFeedResponse
-  ): Podcast? {
+      feedUrl: String,
+      imageUrl: String,
+      rssResponse: RssFeedResponse): Podcast? {
     val items = rssResponse.episodes ?: return null
     val description = if (rssResponse.description == "")
       rssResponse.summary else rssResponse.description
