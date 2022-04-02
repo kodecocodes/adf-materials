@@ -32,7 +32,7 @@
  *   THE SOFTWARE.
  */
 
-package com.raywenderlich.podplay.util
+package com.yourcompany.podplay.util
 
 import android.util.Log
 import java.text.DateFormat
