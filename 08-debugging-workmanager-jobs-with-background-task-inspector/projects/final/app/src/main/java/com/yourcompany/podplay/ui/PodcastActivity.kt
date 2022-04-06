@@ -38,9 +38,11 @@ import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -65,10 +67,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
-import android.util.Log
-import android.widget.Toast
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
 
 private const val TAG = "PodcastActivity"
 
@@ -160,17 +158,18 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   }
 
   private fun scheduleJobs() {
+    // 1
     val constraints: Constraints = Constraints.Builder().apply {
       setRequiredNetworkType(NetworkType.CONNECTED)
-      setRequiresCharging(true)
+      setRequiresBatteryNotLow(true)
     }.build()
-
-    // TODO: Chapter 8 - Initially set interval to 5 min to be debugged and fixed with WorkManager
+    // 2
     val request = PeriodicWorkRequestBuilder<EpisodeUpdateWorker>(
-        1, TimeUnit.HOURS)
+        repeatInterval = 1,
+        repeatIntervalTimeUnit = TimeUnit.HOURS)
         .setConstraints(constraints)
         .build()
-
+    // 3
     WorkManager.getInstance(this).enqueueUniquePeriodicWork(TAG_EPISODE_UPDATE_JOB,
         ExistingPeriodicWorkPolicy.REPLACE, request)
   }
