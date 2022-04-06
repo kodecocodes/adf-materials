@@ -38,16 +38,19 @@ import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.*
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.yourcompany.podplay.R
 import com.yourcompany.podplay.adapter.PodcastListAdapter
 import com.yourcompany.podplay.adapter.PodcastListAdapter.PodcastListAdapterListener
@@ -60,15 +63,13 @@ import com.yourcompany.podplay.ui.PodcastDetailsFragment.OnPodcastDetailsListene
 import com.yourcompany.podplay.viewmodel.PodcastViewModel
 import com.yourcompany.podplay.viewmodel.SearchViewModel
 import com.yourcompany.podplay.worker.EpisodeUpdateWorker
+import com.yourcompany.podplay.worker.GetNewEpisodesWorker
+import com.yourcompany.podplay.worker.LoadPodcastsWorker
+import com.yourcompany.podplay.worker.SaveNewEpisodesWorker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.concurrent.TimeUnit
-import android.util.Log
-import android.widget.Toast
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
 
 private const val TAG = "PodcastActivity"
 
@@ -160,19 +161,15 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   }
 
   private fun scheduleJobs() {
-    val constraints: Constraints = Constraints.Builder().apply {
-      setRequiredNetworkType(NetworkType.CONNECTED)
-      setRequiresCharging(true)
-    }.build()
+    val loadPodcasts = OneTimeWorkRequestBuilder<LoadPodcastsWorker>().build()
+    val getNewEpisodes = OneTimeWorkRequestBuilder<GetNewEpisodesWorker>().build()
+    val saveNewEpisodes = OneTimeWorkRequestBuilder<SaveNewEpisodesWorker>().build()
 
-    // TODO: Chapter 8 - Initially set interval to 5 min to be debugged and fixed with WorkManager
-    val request = PeriodicWorkRequestBuilder<EpisodeUpdateWorker>(
-        1, TimeUnit.HOURS)
-        .setConstraints(constraints)
-        .build()
-
-    WorkManager.getInstance(this).enqueueUniquePeriodicWork(TAG_EPISODE_UPDATE_JOB,
-        ExistingPeriodicWorkPolicy.REPLACE, request)
+    WorkManager.getInstance(this)
+        .beginWith(loadPodcasts)
+        .then(getNewEpisodes)
+        .then(saveNewEpisodes)
+        .enqueue()
   }
 
   private fun showSubscribedPodcasts() {
