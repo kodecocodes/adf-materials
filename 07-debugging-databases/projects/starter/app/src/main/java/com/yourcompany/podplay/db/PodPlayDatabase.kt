@@ -70,9 +70,11 @@ abstract class PodPlayDatabase : RoomDatabase() {
       }
 
       synchronized(this) {
-        val instance = Room.databaseBuilder(context.applicationContext,
+        val instance = Room.databaseBuilder(
+            context.applicationContext,
             PodPlayDatabase::class.java,
-            "PodPlayer")
+            "PodPlayer"
+        )
             .build()
         INSTANCE = instance
         return instance

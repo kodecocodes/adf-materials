@@ -84,10 +84,10 @@
       android:id="@+id/episodeTitleTextView"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_alignBottom="@+id/episodeImageView"
       android:layout_alignTop="@+id/episodeImageView"
-      android:layout_marginEnd="8dp"
+      android:layout_alignBottom="@+id/episodeImageView"
       android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
       android:layout_toEndOf="@+id/episodeImageView"
       android:text="" />
   </RelativeLayout>
@@ -97,8 +97,8 @@
     android:id="@+id/playerControls"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@android:color/background_dark"
+    android:orientation="vertical"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent">
@@ -111,10 +111,10 @@
         android:id="@+id/playToggleButton"
         android:layout_width="34dp"
         android:layout_height="34dp"
+        android:layout_centerInParent="true"
         android:layout_marginTop="8dp"
         android:background="@drawable/ic_play_pause_toggle"
-        android:scaleType="fitCenter"
-        android:layout_centerInParent="true" />
+        android:scaleType="fitCenter" />
 
       <ImageButton
         android:id="@+id/forwardButton"
@@ -122,36 +122,36 @@
         android:layout_height="34dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/playToggleButton"
         android:background="@android:color/transparent"
         android:contentDescription="@string/skip_forward"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_forward_30_white"
-        android:layout_toEndOf="@id/playToggleButton" />
+        android:src="@drawable/ic_forward_30_white" />
 
       <ImageButton
         android:id="@+id/replayButton"
         android:layout_width="34dp"
         android:layout_height="34dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_toStartOf="@id/playToggleButton"
         android:background="@android:color/transparent"
         android:contentDescription="@string/replay_button"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_replay_10_white"
-        android:layout_toStartOf="@id/playToggleButton" />
+        android:src="@drawable/ic_replay_10_white" />
 
       <Button
         android:id="@+id/speedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
         android:text="@string/_1x"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:layout_alignParentEnd="true" />
+        android:textSize="14sp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -163,8 +163,8 @@
         android:id="@+id/currentTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/_0_00"
         android:textColor="@android:color/white"
         android:textSize="12sp" />
@@ -173,18 +173,18 @@
         android:id="@+id/seekBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
         android:progressBackgroundTint="@android:color/white" />
 
       <TextView
         android:id="@+id/endTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/_0_00"
         android:textColor="@android:color/white"
         android:textSize="12sp" />

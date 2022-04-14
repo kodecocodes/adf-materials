@@ -67,8 +67,10 @@ class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapter
     setHasOptionsMenu(true)
   }
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                            savedInstanceState: Bundle?): View {
+  override fun onCreateView(
+      inflater: LayoutInflater, container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View {
     _databinding = FragmentPodcastDetailsBinding.inflate(inflater, container, false)
     return databinding.root
   }
@@ -92,7 +94,8 @@ class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapter
         databinding.episodeRecyclerView.layoutManager = layoutManager
 
         val dividerItemDecoration = DividerItemDecoration(
-            databinding.episodeRecyclerView.context, layoutManager.orientation)
+            databinding.episodeRecyclerView.context, layoutManager.orientation
+        )
         databinding.episodeRecyclerView.addItemDecoration(dividerItemDecoration)
         episodeListAdapter = EpisodeListAdapter(viewData.episodes, this)
         databinding.episodeRecyclerView.adapter = episodeListAdapter
@@ -106,8 +109,10 @@ class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapter
     if (context is OnPodcastDetailsListener) {
       listener = context
     } else {
-      throw RuntimeException(context.toString() +
-          " must implement OnPodcastDetailsListener")
+      throw RuntimeException(
+          context.toString() +
+              " must implement OnPodcastDetailsListener"
+      )
     }
   }
 

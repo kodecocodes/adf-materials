@@ -100,9 +100,11 @@ class EpisodePlayerFragment : Fragment() {
     }
   }
 
-  override fun onCreateView(inflater: LayoutInflater,
-                            container: ViewGroup?,
-                            savedInstanceState: Bundle?): View {
+  override fun onCreateView(
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View {
     _databinding = FragmentEpisodePlayerBinding.inflate(inflater, container, false)
     return databinding.root
   }
@@ -172,7 +174,8 @@ class EpisodePlayerFragment : Fragment() {
     }
     databinding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
       override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-        databinding.currentTimeTextView.text = DateUtils.formatElapsedTime((progress / 1000).toLong())
+        databinding.currentTimeTextView.text =
+            DateUtils.formatElapsedTime((progress / 1000).toLong())
       }
 
       override fun onStartTrackingTouch(seekBar: SeekBar) {
@@ -206,8 +209,10 @@ class EpisodePlayerFragment : Fragment() {
     if (controller != null) {
       val metadata = controller.metadata
       if (metadata != null) {
-        handleStateChange(controller.playbackState.state,
-            controller.playbackState.position, playerSpeed)
+        handleStateChange(
+            controller.playbackState.state,
+            controller.playbackState.position, playerSpeed
+        )
         updateControlsFromMetadata(controller.metadata)
       }
     }
@@ -303,7 +308,8 @@ class EpisodePlayerFragment : Fragment() {
     }
 
     progressAnimator = ValueAnimator.ofInt(
-        progress, episodeDuration.toInt())
+        progress, episodeDuration.toInt()
+    )
     progressAnimator?.let { animator ->
       animator.duration = timeRemaining.toLong()
       animator.interpolator = LinearInterpolator()
@@ -429,10 +435,12 @@ class EpisodePlayerFragment : Fragment() {
 
   private fun initMediaBrowser() {
     val fragmentActivity = activity as FragmentActivity
-    mediaBrowser = MediaBrowserCompat(fragmentActivity,
+    mediaBrowser = MediaBrowserCompat(
+        fragmentActivity,
         ComponentName(fragmentActivity, PodplayMediaService::class.java),
         MediaBrowserCallBacks(),
-        null)
+        null
+    )
   }
 
   inner class MediaBrowserCallBacks : MediaBrowserCompat.ConnectionCallback() {
