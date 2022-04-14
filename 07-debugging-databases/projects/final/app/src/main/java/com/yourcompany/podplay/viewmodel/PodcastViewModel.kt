@@ -35,6 +35,7 @@
 package com.yourcompany.podplay.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.yourcompany.podplay.db.PodPlayDatabase
 import com.yourcompany.podplay.db.PodcastDao
@@ -44,7 +45,6 @@ import com.yourcompany.podplay.repository.PodcastRepo
 import com.yourcompany.podplay.util.DateUtils
 import com.yourcompany.podplay.viewmodel.SearchViewModel.PodcastSummaryViewData
 import java.util.*
-import android.util.Log
 import kotlin.system.measureTimeMillis
 
 private const val TAG = "PodcastViewModel"

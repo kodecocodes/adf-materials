@@ -38,9 +38,11 @@ import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -65,10 +67,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
-import android.util.Log
-import android.widget.Toast
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
 
 private const val TAG = "PodcastActivity"
 
@@ -146,7 +144,7 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   override fun onShowDetails(podcastSummaryViewData: SearchViewModel.PodcastSummaryViewData) {
     if (podcastSummaryViewData.feedUrl == null) {
       Log.w(TAG, "podcastSummaryViewData for podcast named '${podcastSummaryViewData.name}' feedUrl is null.")
-      Toast.makeText(this, getString(R.string.podcast_feed_unavailable_error), Toast.LENGTH_LONG).show();
+      Toast.makeText(this, getString(R.string.podcast_feed_unavailable_error), Toast.LENGTH_LONG).show()
       return
     } else {
       showProgressBar()
