@@ -144,7 +144,7 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   override fun onShowDetails(podcastSummaryViewData: SearchViewModel.PodcastSummaryViewData) {
     if (podcastSummaryViewData.feedUrl == null) {
       Log.w(TAG, "podcastSummaryViewData for podcast named '${podcastSummaryViewData.name}' feedUrl is null.")
-      Toast.makeText(this, getString(R.string.podcast_feed_unavailable_error), Toast.LENGTH_LONG).show();
+      Toast.makeText(this, getString(R.string.podcast_feed_unavailable_error), Toast.LENGTH_LONG).show()
       return
     } else {
       showProgressBar()
