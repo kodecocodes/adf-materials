@@ -51,4 +51,5 @@
   <string name="_0_00">0:00</string>
   <string name="podcast_feed_image_description">Podcast feed image.</string>
   <string name="podcast_image_description">Podcast thumbnail image.</string>
+  <string name="podcast_feed_unavailable_error">Podcast feed unavailable</string>
 </resources>

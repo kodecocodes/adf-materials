@@ -389,7 +389,7 @@ class EpisodePlayerFragment : Fragment() {
   }
 
   private fun startPlaying(episodeViewData: PodcastViewModel.EpisodeViewData) {
-    // TODO 1
+    databinding.progressBar.visibility = View.VISIBLE
     val fragmentActivity = activity as FragmentActivity
     val controller = MediaControllerCompat.getMediaController(fragmentActivity)
 
@@ -453,7 +453,7 @@ class EpisodePlayerFragment : Fragment() {
 
     override fun onPlaybackStateChanged(state: PlaybackStateCompat?) {
       val currentState = state ?: return
-      // TODO 2
+      databinding.progressBar.visibility = View.INVISIBLE
       handleStateChange(currentState.state, currentState.position, currentState.playbackSpeed)
     }
   }
