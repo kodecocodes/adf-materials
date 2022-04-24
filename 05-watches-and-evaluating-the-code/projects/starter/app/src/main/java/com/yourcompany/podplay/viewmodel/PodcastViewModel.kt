@@ -44,6 +44,10 @@ import com.yourcompany.podplay.repository.PodcastRepo
 import com.yourcompany.podplay.util.DateUtils
 import com.yourcompany.podplay.viewmodel.SearchViewModel.PodcastSummaryViewData
 import java.util.*
+import android.util.Log
+import kotlin.system.measureTimeMillis
+
+private const val TAG = "PodcastViewModel"
 
 class PodcastViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -74,11 +78,13 @@ class PodcastViewModel(application: Application) : AndroidViewModel(application)
   suspend fun getPodcast(podcastSummaryViewData: PodcastSummaryViewData) {
     podcastSummaryViewData.feedUrl?.let { url ->
       var podcast: Podcast?
-      // TODO 1
-      podcast = podcastRepo?.getPodcast(url)
+      Log.d(TAG, "Calling getPodcast for podcast named ${podcastSummaryViewData.name}, recording time.")
+      val timeInMillis = measureTimeMillis {
+        podcast = podcastRepo?.getPodcast(url)
+      }
 
       podcast?.let {
-        // TODO 2
+        Log.d(TAG, "getPodcast() for podcast named ${podcastSummaryViewData.name} completed, time taken: $timeInMillis milliseconds.")
         it.feedTitle = podcastSummaryViewData.name ?: ""
         it.imageUrl = podcastSummaryViewData.imageUrl ?: ""
         _podcastLiveData.value = podcastToPodcastView(it)

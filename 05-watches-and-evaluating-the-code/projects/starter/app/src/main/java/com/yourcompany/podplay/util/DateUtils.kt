@@ -34,7 +34,9 @@
 
 package com.yourcompany.podplay.util
 
+import android.util.Log
 import java.text.DateFormat
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -52,8 +54,13 @@ object DateUtils {
 
   fun xmlDateToDate(dateString: String?): Date {
     val date = dateString ?: return Date()
-    val inFormat = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.getDefault())
-    return inFormat.parse(date) ?: Date()
+    val inFormat = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
+    return try {
+      inFormat.parse(date) ?: Date()
+    } catch (e: ParseException) {
+      Log.wtf("xmlDateToDate", e)
+      Date()
+    }
   }
 
   fun dateToShortDate(date: Date): String {
