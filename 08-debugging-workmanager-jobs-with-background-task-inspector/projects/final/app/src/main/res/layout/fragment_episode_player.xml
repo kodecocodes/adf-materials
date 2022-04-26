@@ -1,4 +1,4 @@
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2022 Razeware LLC
   ~
   ~  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,28 +38,115 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <SurfaceView
-    android:id="@+id/videoSurfaceView"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:visibility="invisible"
+  <LinearLayout
+    android:id="@+id/playerControls"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/background_dark"
+    android:orientation="vertical"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    app:layout_constraintStart_toStartOf="parent">
 
-  <TextView
-    android:id="@+id/episodeDescTextView"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:background="@android:color/white"
-    android:padding="8dp"
-    android:scrollbars="vertical"
-    app:layout_constraintBottom_toTopOf="@+id/playerControls"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/headerView"
-    tools:text="Episode description" />
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+
+      <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
+        android:progressBackgroundTint="@android:color/white" />
+
+      <TextView
+        android:id="@+id/currentTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/_0_00"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+
+      <TextView
+        android:id="@+id/endTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/_0_00"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <Button
+        android:id="@+id/playToggleButton"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_play_pause_toggle"
+        android:scaleType="fitCenter" />
+
+      <Button
+        android:id="@+id/speedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:text="@string/_1x"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+      <ImageButton
+        android:id="@+id/replayButton"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_toStartOf="@id/playToggleButton"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/replay_button"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_replay_10_white" />
+
+      <ImageButton
+        android:id="@+id/forwardButton"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/playToggleButton"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/skip_forward"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_forward_30_white" />
+    </RelativeLayout>
+  </LinearLayout>
+
+  <ProgressBar
+    android:id="@+id/progressBar"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:visibility="visible" />
 
   <!-- TODO: Chapter 6 - Migrate to a separate ConstraintLayout  -->
   <RelativeLayout
@@ -93,114 +180,27 @@
   </RelativeLayout>
 
   <!-- TODO: Chapter 6 - Migrate to a separate ConstraintLayout  -->
-  <LinearLayout
-    android:id="@+id/playerControls"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/background_dark"
-    android:orientation="vertical"
+  <SurfaceView
+    android:id="@+id/videoSurfaceView"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:visibility="invisible"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent">
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-
-      <Button
-        android:id="@+id/playToggleButton"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/ic_play_pause_toggle"
-        android:scaleType="fitCenter"
-        android:layout_centerInParent="true" />
-
-      <ImageButton
-        android:id="@+id/forwardButton"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/skip_forward"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_forward_30_white"
-        android:layout_toEndOf="@id/playToggleButton" />
-
-      <ImageButton
-        android:id="@+id/replayButton"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/replay_button"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_replay_10_white"
-        android:layout_toStartOf="@id/playToggleButton" />
-
-      <Button
-        android:id="@+id/speedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
-        android:text="@string/_1x"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:layout_alignParentEnd="true" />
-    </RelativeLayout>
-
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal">
-
-      <TextView
-        android:id="@+id/currentTimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/_0_00"
-        android:textColor="@android:color/white"
-        android:textSize="12sp" />
-
-      <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:progressBackgroundTint="@android:color/white" />
-
-      <TextView
-        android:id="@+id/endTimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/_0_00"
-        android:textColor="@android:color/white"
-        android:textSize="12sp" />
-    </LinearLayout>
-  </LinearLayout>
-
-  <ProgressBar
-    android:id="@+id/progressBar"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
-    android:layout_gravity="center"
-    android:visibility="gone"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:visibility="visible" />
+  <TextView
+    android:id="@+id/episodeDescTextView"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:background="@android:color/white"
+    android:padding="8dp"
+    android:scrollbars="vertical"
+    app:layout_constraintBottom_toTopOf="@+id/playerControls"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/headerView"
+    tools:text="Episode description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

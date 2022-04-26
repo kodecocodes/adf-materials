@@ -87,16 +87,22 @@ class PodplayMediaService : MediaBrowserServiceCompat(), PodplayMediaListener {
     mediaSession.controller.transportControls.stop()
   }
 
-  override fun onLoadChildren(parentId: String, result: Result<MutableList<MediaBrowserCompat.MediaItem>>) {
+  override fun onLoadChildren(
+    parentId: String,
+    result: Result<MutableList<MediaBrowserCompat.MediaItem>>
+  ) {
     if (parentId == PODPLAY_EMPTY_ROOT_MEDIA_ID) {
       result.sendResult(null)
     }
   }
 
-  override fun onGetRoot(clientPackageName: String,
-                         clientUid: Int, rootHints: Bundle?): BrowserRoot {
+  override fun onGetRoot(
+    clientPackageName: String,
+    clientUid: Int, rootHints: Bundle?
+  ): BrowserRoot {
     return BrowserRoot(
-        PODPLAY_EMPTY_ROOT_MEDIA_ID, null)
+      PODPLAY_EMPTY_ROOT_MEDIA_ID, null
+    )
   }
 
   private fun createMediaSession() {
@@ -110,67 +116,89 @@ class PodplayMediaService : MediaBrowserServiceCompat(), PodplayMediaListener {
   private fun getPausePlayActions():
       Pair<NotificationCompat.Action, NotificationCompat.Action> {
     val pauseAction = NotificationCompat.Action(
-        R.drawable.ic_pause_white, getString(R.string.pause),
-        MediaButtonReceiver.buildMediaButtonPendingIntent(this,
-            PlaybackStateCompat.ACTION_PAUSE))
+      R.drawable.ic_pause_white, getString(R.string.pause),
+      MediaButtonReceiver.buildMediaButtonPendingIntent(
+        this,
+        PlaybackStateCompat.ACTION_PAUSE
+      )
+    )
     val playAction = NotificationCompat.Action(
-        R.drawable.ic_play_arrow_white, getString(R.string.play),
-        MediaButtonReceiver.buildMediaButtonPendingIntent(this,
-            PlaybackStateCompat.ACTION_PLAY))
+      R.drawable.ic_play_arrow_white, getString(R.string.play),
+      MediaButtonReceiver.buildMediaButtonPendingIntent(
+        this,
+        PlaybackStateCompat.ACTION_PLAY
+      )
+    )
     return Pair(pauseAction, playAction)
   }
 
   private fun isPlaying() =
-      mediaSession.controller.playbackState != null &&
-          mediaSession.controller.playbackState.state ==
-          PlaybackStateCompat.STATE_PLAYING
+    mediaSession.controller.playbackState != null &&
+        mediaSession.controller.playbackState.state ==
+        PlaybackStateCompat.STATE_PLAYING
 
 
   private fun getNotificationIntent(): PendingIntent {
     val openActivityIntent = Intent(this, PodcastActivity::class.java)
     openActivityIntent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
     return PendingIntent.getActivity(
-        this@PodplayMediaService, 0, openActivityIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT)
+      this@PodplayMediaService,
+      0,
+      openActivityIntent,
+      PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT
+    )
   }
 
   @RequiresApi(Build.VERSION_CODES.O)
   private fun createNotificationChannel() {
     val notificationManager =
-        getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+      getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     if (notificationManager.getNotificationChannel(PLAYER_CHANNEL_ID) == null) {
-      val channel = NotificationChannel(PLAYER_CHANNEL_ID, "Player",
-          NotificationManager.IMPORTANCE_LOW)
+      val channel = NotificationChannel(
+        PLAYER_CHANNEL_ID, "Player",
+        NotificationManager.IMPORTANCE_LOW
+      )
       notificationManager.createNotificationChannel(channel)
     }
   }
 
-  private fun createNotification(mediaDescription: MediaDescriptionCompat,
-                                 bitmap: Bitmap?): Notification {
+  private fun createNotification(
+    mediaDescription: MediaDescriptionCompat,
+    bitmap: Bitmap?
+  ): Notification {
 
     val notificationIntent = getNotificationIntent()
     val (pauseAction, playAction) = getPausePlayActions()
     val notification = NotificationCompat.Builder(
-        this@PodplayMediaService, PLAYER_CHANNEL_ID)
+      this@PodplayMediaService, PLAYER_CHANNEL_ID
+    )
 
     notification
-        .setContentTitle(mediaDescription.title)
-        .setContentText(mediaDescription.subtitle)
-        .setLargeIcon(bitmap)
-        .setContentIntent(notificationIntent)
-        .setDeleteIntent(
-            MediaButtonReceiver.buildMediaButtonPendingIntent(this,
-                PlaybackStateCompat.ACTION_STOP))
-        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-        .setSmallIcon(R.drawable.ic_episode_icon)
-        .addAction(if (isPlaying()) pauseAction else playAction)
-        .setStyle(
-            androidx.media.app.NotificationCompat.MediaStyle()
-                .setMediaSession(mediaSession.sessionToken)
-                .setShowActionsInCompactView(0)
-                .setShowCancelButton(true)
-                .setCancelButtonIntent(
-                    MediaButtonReceiver.buildMediaButtonPendingIntent(this,
-                        PlaybackStateCompat.ACTION_STOP)))
+      .setContentTitle(mediaDescription.title)
+      .setContentText(mediaDescription.subtitle)
+      .setLargeIcon(bitmap)
+      .setContentIntent(notificationIntent)
+      .setDeleteIntent(
+        MediaButtonReceiver.buildMediaButtonPendingIntent(
+          this,
+          PlaybackStateCompat.ACTION_STOP
+        )
+      )
+      .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+      .setSmallIcon(R.drawable.ic_episode_icon)
+      .addAction(if (isPlaying()) pauseAction else playAction)
+      .setStyle(
+        androidx.media.app.NotificationCompat.MediaStyle()
+          .setMediaSession(mediaSession.sessionToken)
+          .setShowActionsInCompactView(0)
+          .setShowCancelButton(true)
+          .setCancelButtonIntent(
+            MediaButtonReceiver.buildMediaButtonPendingIntent(
+              this,
+              PlaybackStateCompat.ACTION_STOP
+            )
+          )
+      )
     return notification.build()
   }
 
@@ -193,8 +221,9 @@ class PodplayMediaService : MediaBrowserServiceCompat(), PodplayMediaListener {
         createNotification(mediaDescription, bitmap)
       }.onSuccess { notification: Notification ->
         ContextCompat.startForegroundService(
-            this@PodplayMediaService,
-            Intent(this@PodplayMediaService, PodplayMediaService::class.java))
+          this@PodplayMediaService,
+          Intent(this@PodplayMediaService, PodplayMediaService::class.java)
+        )
         startForeground(NOTIFICATION_ID, notification)
       }
     }

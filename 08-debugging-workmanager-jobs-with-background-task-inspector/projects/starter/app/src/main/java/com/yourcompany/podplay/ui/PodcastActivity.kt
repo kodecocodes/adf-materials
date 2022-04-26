@@ -74,7 +74,7 @@ import kotlinx.coroutines.withContext
 private const val TAG = "PodcastActivity"
 
 class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
-    OnPodcastDetailsListener {
+  OnPodcastDetailsListener {
 
   private val searchViewModel by viewModels<SearchViewModel>()
   private val podcastViewModel by viewModels<PodcastViewModel>()
@@ -146,8 +146,12 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
 
   override fun onShowDetails(podcastSummaryViewData: SearchViewModel.PodcastSummaryViewData) {
     if (podcastSummaryViewData.feedUrl == null) {
-      Log.w(TAG, "podcastSummaryViewData for podcast named '${podcastSummaryViewData.name}' feedUrl is null.")
-      Toast.makeText(this, getString(R.string.podcast_feed_unavailable_error), Toast.LENGTH_LONG).show();
+      Log.w(
+        TAG,
+        "podcastSummaryViewData for podcast named '${podcastSummaryViewData.name}' feedUrl is null."
+      )
+      Toast.makeText(this, getString(R.string.podcast_feed_unavailable_error), Toast.LENGTH_LONG)
+        .show();
       return
     } else {
       showProgressBar()
@@ -166,10 +170,10 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
     val saveNewEpisodes = OneTimeWorkRequestBuilder<SaveNewEpisodesWorker>().build()
 
     WorkManager.getInstance(this)
-        .beginWith(loadPodcasts)
-        .then(getNewEpisodes)
-        .then(saveNewEpisodes)
-        .enqueue()
+      .beginWith(loadPodcasts)
+      .then(getNewEpisodes)
+      .then(saveNewEpisodes)
+      .enqueue()
   }
 
   private fun showSubscribedPodcasts() {
@@ -179,7 +183,8 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
       databinding.toolbar.title = getString(R.string.subscribed_podcasts)
       podcastListAdapter.setSearchData(podcasts)
 
-      databinding.emptyListViewGroup.visibility = if (podcasts.isEmpty()) View.VISIBLE else View.GONE
+      databinding.emptyListViewGroup.visibility =
+        if (podcasts.isEmpty()) View.VISIBLE else View.GONE
     }
   }
 
@@ -244,8 +249,10 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
     val layoutManager = LinearLayoutManager(this)
     databinding.podcastRecyclerView.layoutManager = layoutManager
 
-    val dividerItemDecoration = DividerItemDecoration(databinding.podcastRecyclerView.context,
-        layoutManager.orientation)
+    val dividerItemDecoration = DividerItemDecoration(
+      databinding.podcastRecyclerView.context,
+      layoutManager.orientation
+    )
     databinding.podcastRecyclerView.addItemDecoration(dividerItemDecoration)
 
     podcastListAdapter = PodcastListAdapter(null, this, this)
@@ -260,8 +267,10 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   private fun showDetailsFragment() {
     val podcastDetailsFragment = createPodcastDetailsFragment()
 
-    supportFragmentManager.beginTransaction().add(R.id.podcastDetailsContainer,
-        podcastDetailsFragment, TAG_DETAILS_FRAGMENT).addToBackStack("DetailsFragment").commit()
+    supportFragmentManager.beginTransaction().add(
+      R.id.podcastDetailsContainer,
+      podcastDetailsFragment, TAG_DETAILS_FRAGMENT
+    ).addToBackStack("DetailsFragment").commit()
     databinding.podcastRecyclerView.visibility = View.INVISIBLE
     searchMenuItem.isVisible = false
   }
@@ -269,8 +278,10 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   private fun showPlayerFragment() {
     val episodePlayerFragment = createEpisodePlayerFragment()
 
-    supportFragmentManager.beginTransaction().replace(R.id.podcastDetailsContainer,
-        episodePlayerFragment, TAG_PLAYER_FRAGMENT).addToBackStack("PlayerFragment").commit()
+    supportFragmentManager.beginTransaction().replace(
+      R.id.podcastDetailsContainer,
+      episodePlayerFragment, TAG_PLAYER_FRAGMENT
+    ).addToBackStack("PlayerFragment").commit()
     databinding.podcastRecyclerView.visibility = View.INVISIBLE
     searchMenuItem.isVisible = false
   }
@@ -287,7 +298,8 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   }
 
   private fun createPodcastDetailsFragment(): PodcastDetailsFragment {
-    var podcastDetailsFragment = supportFragmentManager.findFragmentByTag(TAG_DETAILS_FRAGMENT) as PodcastDetailsFragment?
+    var podcastDetailsFragment =
+      supportFragmentManager.findFragmentByTag(TAG_DETAILS_FRAGMENT) as PodcastDetailsFragment?
 
     // TODO: Chapter 10 - Disable null check for introducing memory leaks to resolve later
     if (podcastDetailsFragment == null) {

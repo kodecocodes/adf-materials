@@ -52,7 +52,8 @@ import com.yourcompany.podplay.ui.PodcastActivity
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 
-class EpisodeUpdateWorker(context: Context, params: WorkerParameters) : CoroutineWorker(context, params) {
+class EpisodeUpdateWorker(context: Context, params: WorkerParameters) :
+  CoroutineWorker(context, params) {
   override suspend fun doWork(): Result = coroutineScope {
     val job = async {
       // 1
@@ -74,10 +75,12 @@ class EpisodeUpdateWorker(context: Context, params: WorkerParameters) : Coroutin
 
   @RequiresApi(Build.VERSION_CODES.O)
   private fun createNotificationChannel() {
-    val notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    val notificationManager =
+      applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
     if (notificationManager.getNotificationChannel(EPISODE_CHANNEL_ID) == null) {
-      val channel = NotificationChannel(EPISODE_CHANNEL_ID, "Episodes", NotificationManager.IMPORTANCE_DEFAULT)
+      val channel =
+        NotificationChannel(EPISODE_CHANNEL_ID, "Episodes", NotificationManager.IMPORTANCE_DEFAULT)
       notificationManager.createNotificationChannel(channel)
     }
   }
@@ -86,18 +89,30 @@ class EpisodeUpdateWorker(context: Context, params: WorkerParameters) : Coroutin
 
     val contentIntent = Intent(applicationContext, PodcastActivity::class.java)
     contentIntent.putExtra(EXTRA_FEED_URL, podcastInfo.feedUrl)
-    val pendingContentIntent = PendingIntent.getActivity(applicationContext, 0, contentIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+    val pendingContentIntent = PendingIntent.getActivity(
+      applicationContext,
+      0,
+      contentIntent,
+      PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+    )
 
     val notification = NotificationCompat.Builder(applicationContext, EPISODE_CHANNEL_ID)
-        .setSmallIcon(R.drawable.ic_episode_icon)
-        .setContentTitle(applicationContext.getString(R.string.episode_notification_title))
-        .setContentText(applicationContext.resources.getQuantityString(R.plurals.episode_notification_text, podcastInfo.newCount, podcastInfo.name))
-        .setNumber(podcastInfo.newCount)
-        .setAutoCancel(true)
-        .setContentIntent(pendingContentIntent)
-        .build()
+      .setSmallIcon(R.drawable.ic_episode_icon)
+      .setContentTitle(applicationContext.getString(R.string.episode_notification_title))
+      .setContentText(
+        applicationContext.resources.getQuantityString(
+          R.plurals.episode_notification_text,
+          podcastInfo.newCount,
+          podcastInfo.name
+        )
+      )
+      .setNumber(podcastInfo.newCount)
+      .setAutoCancel(true)
+      .setContentIntent(pendingContentIntent)
+      .build()
 
-    val notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    val notificationManager =
+      applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     notificationManager.notify(podcastInfo.name, 0, notification)
   }
 
