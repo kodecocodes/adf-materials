@@ -61,7 +61,6 @@
     app:layout_constraintTop_toBottomOf="@+id/headerView"
     tools:text="Episode description" />
 
-  <!-- TODO: Chapter 6 - Migrate to a separate ConstraintLayout  -->
   <RelativeLayout
     android:id="@+id/headerView"
     android:layout_width="match_parent"
@@ -92,7 +91,6 @@
       android:text="" />
   </RelativeLayout>
 
-  <!-- TODO: Chapter 6 - Migrate to a separate ConstraintLayout  -->
   <LinearLayout
     android:id="@+id/playerControls"
     android:layout_width="match_parent"

@@ -148,7 +148,6 @@
     app:layout_constraintTop_toTopOf="parent"
     tools:visibility="visible" />
 
-  <!-- TODO: Chapter 6 - Migrate to a separate ConstraintLayout  -->
   <RelativeLayout
     android:id="@+id/headerView"
     android:layout_width="match_parent"
@@ -179,7 +178,6 @@
       android:text="" />
   </RelativeLayout>
 
-  <!-- TODO: Chapter 6 - Migrate to a separate ConstraintLayout  -->
   <SurfaceView
     android:id="@+id/videoSurfaceView"
     android:layout_width="0dp"
