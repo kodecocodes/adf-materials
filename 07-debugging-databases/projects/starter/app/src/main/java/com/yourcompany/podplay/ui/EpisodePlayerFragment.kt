@@ -405,7 +405,6 @@ class EpisodePlayerFragment : Fragment() {
     bundle.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, viewData.value?.feedTitle)
     bundle.putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, viewData.value?.imageUrl)
 
-    // TODO 2
     controller.transportControls.playFromUri(Uri.parse(episodeViewData.mediaUrl), bundle)
   }
 
