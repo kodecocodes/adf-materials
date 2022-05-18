@@ -77,7 +77,10 @@ class PodcastListAdapter(
     this.notifyDataSetChanged()
   }
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PodcastListAdapter.ViewHolder {
+  override fun onCreateViewHolder(
+      parent: ViewGroup,
+      viewType: Int
+  ): PodcastListAdapter.ViewHolder {
     return ViewHolder(
         SearchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false),
         podcastListAdapterListener

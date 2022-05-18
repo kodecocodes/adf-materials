@@ -67,8 +67,10 @@ class PodplayMediaCallback(
   private var focusRequest: AudioFocusRequest? = null
   private var mediaNeedsPrepare: Boolean = false
 
-  override fun onCommand(command: String?, extras: Bundle?,
-                         cb: ResultReceiver?) {
+  override fun onCommand(
+      command: String?, extras: Bundle?,
+      cb: ResultReceiver?
+  ) {
     super.onCommand(command, extras, cb)
     when (command) {
       CMD_CHANGESPEED -> extras?.let { changeSpeed(it) }
@@ -97,7 +99,7 @@ class PodplayMediaCallback(
       initializeMediaPlayer()
       CoroutineScope(Dispatchers.IO).async {
         prepareMedia()
-      }.invokeOnCompletion{
+      }.invokeOnCompletion {
         startPlaying()
       }
     }
@@ -136,7 +138,8 @@ class PodplayMediaCallback(
 
   private fun ensureAudioFocus(): Boolean {
     val audioManager = this.context.getSystemService(
-        Context.AUDIO_SERVICE) as AudioManager
+        Context.AUDIO_SERVICE
+    ) as AudioManager
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       val focusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN).run {
@@ -151,16 +154,19 @@ class PodplayMediaCallback(
       val result = audioManager.requestAudioFocus(focusRequest)
       return result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
     } else {
-      val result = audioManager.requestAudioFocus(null,
+      val result = audioManager.requestAudioFocus(
+          null,
           AudioManager.STREAM_MUSIC,
-          AudioManager.AUDIOFOCUS_GAIN)
+          AudioManager.AUDIOFOCUS_GAIN
+      )
       return result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
     }
   }
 
   private fun removeAudioFocus() {
     val audioManager = this.context.getSystemService(
-        Context.AUDIO_SERVICE) as AudioManager
+        Context.AUDIO_SERVICE
+    ) as AudioManager
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       focusRequest?.let {
@@ -226,14 +232,16 @@ class PodplayMediaCallback(
             PlaybackStateCompat.ACTION_PLAY or
                 PlaybackStateCompat.ACTION_STOP or
                 PlaybackStateCompat.ACTION_PLAY_PAUSE or
-                PlaybackStateCompat.ACTION_PAUSE)
+                PlaybackStateCompat.ACTION_PAUSE
+        )
         .setState(state, position, speed)
         .build()
 
     mediaSession.setPlaybackState(playbackState)
 
     if (state == PlaybackStateCompat.STATE_PAUSED ||
-        state == PlaybackStateCompat.STATE_PLAYING) {
+        state == PlaybackStateCompat.STATE_PLAYING
+    ) {
       listener?.onStateChanged()
     }
   }
@@ -251,17 +259,28 @@ class PodplayMediaCallback(
             mediaPlayer.prepare()
           }
           mediaExtras?.let { mediaExtras ->
-            mediaSession.setMetadata(MediaMetadataCompat.Builder()
-                .putString(MediaMetadataCompat.METADATA_KEY_TITLE,
-                    mediaExtras.getString(MediaMetadataCompat.METADATA_KEY_TITLE))
-                .putString(MediaMetadataCompat.METADATA_KEY_ARTIST,
-                    mediaExtras.getString(MediaMetadataCompat.METADATA_KEY_ARTIST))
-                .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI,
-                    mediaExtras.getString(
-                        MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI))
-                .putLong(MediaMetadataCompat.METADATA_KEY_DURATION,
-                    mediaPlayer.duration.toLong())
-                .build())
+            mediaSession.setMetadata(
+                MediaMetadataCompat.Builder()
+                    .putString(
+                        MediaMetadataCompat.METADATA_KEY_TITLE,
+                        mediaExtras.getString(MediaMetadataCompat.METADATA_KEY_TITLE)
+                    )
+                    .putString(
+                        MediaMetadataCompat.METADATA_KEY_ARTIST,
+                        mediaExtras.getString(MediaMetadataCompat.METADATA_KEY_ARTIST)
+                    )
+                    .putString(
+                        MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI,
+                        mediaExtras.getString(
+                            MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI
+                        )
+                    )
+                    .putLong(
+                        MediaMetadataCompat.METADATA_KEY_DURATION,
+                        mediaPlayer.duration.toLong()
+                    )
+                    .build()
+            )
           }
         }
       }

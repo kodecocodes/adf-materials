@@ -45,7 +45,8 @@ import com.yourcompany.podplay.viewmodel.PodcastViewModel
 
 class EpisodeListAdapter(
     private var episodeViewList: List<PodcastViewModel.EpisodeViewData>?,
-    private val episodeListAdapterListener: EpisodeListAdapterListener) :
+    private val episodeListAdapterListener: EpisodeListAdapterListener
+) :
     RecyclerView.Adapter<EpisodeListAdapter.ViewHolder>() {
 
   interface EpisodeListAdapterListener {
@@ -72,8 +73,17 @@ class EpisodeListAdapter(
     val releaseDateTextView: TextView = databinding.releaseDateView
   }
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeListAdapter.ViewHolder {
-    return ViewHolder(EpisodeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false), episodeListAdapterListener)
+  override fun onCreateViewHolder(
+      parent: ViewGroup,
+      viewType: Int
+  ): EpisodeListAdapter.ViewHolder {
+    return ViewHolder(
+        EpisodeItemBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        ), episodeListAdapterListener
+    )
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
