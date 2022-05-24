@@ -81,7 +81,6 @@ class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapter
         databinding.feedTitleTextView.text = viewData.feedTitle
         databinding.feedDescTextView.text = viewData.feedDesc
         activity?.let { activity ->
-          // TODO: Chapter 10 - Load unscaled / large bitmap to the ImageView
           GlideApp.with(activity).load(viewData.imageUrl).into(databinding.feedImageView)
         }
 
