@@ -34,11 +34,15 @@
 
 package com.yourcompany.podplay.service
 
+import com.yourcompany.podplay.BuildConfig
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import java.util.concurrent.TimeUnit
 
 interface ItunesService {
   @GET("/search?media=podcast")
@@ -46,7 +50,18 @@ interface ItunesService {
 
   companion object {
     val instance: ItunesService by lazy {
+      val client = OkHttpClient().newBuilder()
+          .connectTimeout(30, TimeUnit.SECONDS)
+          .writeTimeout(30, TimeUnit.SECONDS)
+          .readTimeout(30, TimeUnit.SECONDS)
+      if (BuildConfig.DEBUG) {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        client.addInterceptor(interceptor)
+      }
+
       val retrofit = Retrofit.Builder()
+          .client(client.build())
           .baseUrl("https://itunes.apple.com")
           .addConverterFactory(GsonConverterFactory.create())
           .build()
