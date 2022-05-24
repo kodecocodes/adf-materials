@@ -93,7 +93,7 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
     addBackStackListener()
     scheduleJobs()
 
-    performSearch("")
+    performSearch(term = "")
   }
 
   override fun onResume() {
