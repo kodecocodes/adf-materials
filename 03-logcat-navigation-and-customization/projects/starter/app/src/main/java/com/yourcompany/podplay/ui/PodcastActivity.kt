@@ -126,7 +126,8 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
 
   override fun onNewIntent(intent: Intent) {
     super.onNewIntent(intent)
-    // TODO 1
+    // TODO 1 - Chapter 3 - Add info log
+
     setIntent(intent)
     handleIntent(intent)
   }
@@ -135,7 +136,8 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   override fun onShowDetails(podcastSummaryViewData: SearchViewModel.PodcastSummaryViewData) {
     podcastSummaryViewData.feedUrl ?: return
     showProgressBar()
-    // TODO 2
+    // TODO 2 - Chapter 3 - Add info log
+
     podcastViewModel.viewModelScope.launch(context = Dispatchers.Main) {
       podcastViewModel.getPodcast(podcastSummaryViewData)
       hideProgressBar()

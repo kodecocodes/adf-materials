@@ -86,7 +86,7 @@ class PodplayMediaCallback(
 
   override fun onPlay() {
     super.onPlay()
-    // TODO 1
+    // TODO 6 - Chapter 3 - Add info tag
 
     if (ensureAudioFocus()) {
       mediaSession.isActive = true
@@ -98,14 +98,14 @@ class PodplayMediaCallback(
 
   override fun onStop() {
     super.onStop()
-    // TODO 2
+    // TODO 7 - Chapter 3 - Add info tag
 
     stopPlaying()
   }
 
   override fun onPause() {
     super.onPause()
-    // TODO 3
+    // TODO 8 - Chapter 3 - Add info tag
 
     pausePlaying()
   }
@@ -171,7 +171,7 @@ class PodplayMediaCallback(
   }
 
   private fun initializeMediaPlayer() {
-    // TODO 4
+    // TODO 9 - Chapter 3 - Add info log
 
     if (mediaPlayer == null) {
       mediaPlayer = MediaPlayer()
@@ -240,7 +240,7 @@ class PodplayMediaCallback(
   }
 
   private fun prepareMedia() {
-    // TODO 5
+    // TODO 10 - Chapter 3 - Add info log
 
     if (newMedia) {
       newMedia = false
@@ -281,7 +281,7 @@ class PodplayMediaCallback(
   }
 
   private fun startPlaying() {
-    // TODO 6
+    // TODO 11 - Chapter 3 - Add info log
 
     mediaPlayer?.let { mediaPlayer ->
       if (!mediaPlayer.isPlaying) {
