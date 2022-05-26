@@ -70,7 +70,6 @@ import com.yourcompany.podplay.service.PodplayMediaService
 import com.yourcompany.podplay.util.HtmlUtils
 import com.yourcompany.podplay.viewmodel.PodcastViewModel
 
-
 class EpisodePlayerFragment : Fragment() {
 
   private var _databinding: FragmentEpisodePlayerBinding? = null
@@ -408,7 +407,6 @@ class EpisodePlayerFragment : Fragment() {
     bundle.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, viewData.value?.feedTitle)
     bundle.putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, viewData.value?.imageUrl)
 
-    // TODO 2
     controller.transportControls.playFromUri(Uri.parse(episodeViewData.mediaUrl), bundle)
   }
 
