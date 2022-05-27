@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <plurals name="episode_notification_text">
-    <item quantity="one">1 new episode for %2$s</item>
-    <item quantity="other">%1$d new episode(s) for %2$s</item>
-  </plurals>
-</resources>
