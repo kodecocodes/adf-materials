@@ -97,7 +97,7 @@ class PodplayMediaCallback(
       initializeMediaPlayer()
       CoroutineScope(Dispatchers.IO).async {
         prepareMedia()
-      }.invokeOnCompletion{
+      }.invokeOnCompletion {
         startPlaying()
       }
     }
