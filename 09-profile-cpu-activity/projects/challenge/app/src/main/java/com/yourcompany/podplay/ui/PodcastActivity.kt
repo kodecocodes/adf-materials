@@ -157,7 +157,9 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
         hideProgressBar()
         showDetailsFragment()
       }
-      processFactorial()
+      podcastViewModel.viewModelScope.launch(context = Dispatchers.IO) {
+        processFactorial()
+      }
     }
   }
 
