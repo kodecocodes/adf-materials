@@ -156,6 +156,7 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
         hideProgressBar()
         showDetailsFragment()
       }
+      processFactorial()
     }
   }
 
@@ -306,6 +307,13 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
 
   private fun hideProgressBar() {
     databinding.progressBar.visibility = View.INVISIBLE
+  }
+
+  private fun processFactorial() {
+    var factorial = BigInteger.ONE
+    for (i in 1..50000) {
+      factorial = factorial.multiply(BigInteger.valueOf(i.toLong()))
+    }
   }
 
   companion object {
