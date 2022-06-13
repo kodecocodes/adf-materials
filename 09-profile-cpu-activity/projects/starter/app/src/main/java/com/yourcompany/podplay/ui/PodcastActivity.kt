@@ -157,7 +157,6 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
         hideProgressBar()
         showDetailsFragment()
       }
-      processFactorial()
     }
   }
 
@@ -278,6 +277,8 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
         episodePlayerFragment, TAG_PLAYER_FRAGMENT).addToBackStack("PlayerFragment").commit()
     databinding.podcastRecyclerView.visibility = View.INVISIBLE
     searchMenuItem.isVisible = false
+
+    processFactorial()
   }
 
   private fun createEpisodePlayerFragment(): EpisodePlayerFragment {

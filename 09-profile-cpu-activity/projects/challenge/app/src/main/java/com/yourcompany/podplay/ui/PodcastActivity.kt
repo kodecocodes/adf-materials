@@ -157,9 +157,6 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
         hideProgressBar()
         showDetailsFragment()
       }
-      podcastViewModel.viewModelScope.launch(context = Dispatchers.IO) {
-        processFactorial()
-      }
     }
   }
 
@@ -271,6 +268,10 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
         podcastDetailsFragment, TAG_DETAILS_FRAGMENT).addToBackStack("DetailsFragment").commit()
     databinding.podcastRecyclerView.visibility = View.INVISIBLE
     searchMenuItem.isVisible = false
+
+    podcastViewModel.viewModelScope.launch(context = Dispatchers.IO) {
+      processFactorial()
+    }
   }
 
   private fun showPlayerFragment() {
