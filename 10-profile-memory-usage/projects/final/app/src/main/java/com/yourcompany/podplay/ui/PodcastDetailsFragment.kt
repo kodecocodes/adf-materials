@@ -53,8 +53,8 @@ class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapter
   private val podcastViewModel: PodcastViewModel by activityViewModels()
   private var _databinding: FragmentPodcastDetailsBinding? = null
   private val databinding get() = _databinding!!
-  private lateinit var episodeListAdapter: EpisodeListAdapter
   private var listener: OnPodcastDetailsListener? = null
+  private lateinit var episodeListAdapter: EpisodeListAdapter
 
   companion object {
     fun newInstance(): PodcastDetailsFragment {
@@ -81,7 +81,6 @@ class PodcastDetailsFragment : Fragment(), EpisodeListAdapter.EpisodeListAdapter
         databinding.feedTitleTextView.text = viewData.feedTitle
         databinding.feedDescTextView.text = viewData.feedDesc
         activity?.let { activity ->
-          // TODO: Chapter 10 - Load unscaled / large bitmap to the ImageView
           GlideApp.with(activity).load(viewData.imageUrl).into(databinding.feedImageView)
         }
 
