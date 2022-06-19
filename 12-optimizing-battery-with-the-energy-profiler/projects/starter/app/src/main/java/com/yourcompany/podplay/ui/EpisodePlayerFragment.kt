@@ -110,9 +110,6 @@ class EpisodePlayerFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     setupControls()
-
-    // TODO: Chapter 12 - Initialize MediaSession only if it's a video to optimize resource consumption
-
     initMediaSession()
     initVideoPlayer()
     updateControls()
@@ -135,8 +132,6 @@ class EpisodePlayerFragment : Fragment() {
 
   override fun onStop() {
     super.onStop()
-
-    // TODO: Chapter 12 - Purge MediaPlayer on stop to optimize resource consumption
   }
 
   private fun purgeMediaPlayer() {
@@ -400,7 +395,6 @@ class EpisodePlayerFragment : Fragment() {
     bundle.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, viewData.value?.feedTitle)
     bundle.putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, viewData.value?.imageUrl)
 
-    // TODO 2
     controller.transportControls.playFromUri(Uri.parse(episodeViewData.mediaUrl), bundle)
   }
 
