@@ -42,6 +42,7 @@ import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
+import android.os.PowerManager
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaControllerCompat
@@ -49,6 +50,7 @@ import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import android.text.format.DateUtils
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.SurfaceHolder
 import android.view.View
@@ -68,7 +70,6 @@ import com.yourcompany.podplay.service.PodplayMediaService
 import com.yourcompany.podplay.util.HtmlUtils
 import com.yourcompany.podplay.viewmodel.PodcastViewModel
 
-
 class EpisodePlayerFragment : Fragment() {
 
   private var _databinding: FragmentEpisodePlayerBinding? = null
@@ -85,6 +86,9 @@ class EpisodePlayerFragment : Fragment() {
   private var mediaPlayer: MediaPlayer? = null
   private var isVideo: Boolean = false
   private var playOnPrepare: Boolean = false
+
+  private val WAKELOCK_TAG = "PodPlay::Wakelock"
+  private lateinit var wakeLock: PowerManager.WakeLock
 
   companion object {
     fun newInstance(): EpisodePlayerFragment {
@@ -128,10 +132,12 @@ class EpisodePlayerFragment : Fragment() {
         mediaBrowser.connect()
       }
     }
+    acquireWakeLock()
   }
 
   override fun onStop() {
     super.onStop()
+    purgeMediaPlayer()
   }
 
   private fun purgeMediaPlayer() {
@@ -429,6 +435,18 @@ class EpisodePlayerFragment : Fragment() {
         null)
   }
 
+  private fun acquireWakeLock() {
+    wakeLock = (requireContext().getSystemService(Context.POWER_SERVICE) as PowerManager).run {
+      newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, WAKELOCK_TAG).apply {
+        acquire()
+      }
+    }
+  }
+
+  private fun releaseWakeLock() {
+    wakeLock.release()
+  }
+
   inner class MediaBrowserCallBacks : MediaBrowserCompat.ConnectionCallback() {
 
     override fun onConnected() {
@@ -454,6 +472,7 @@ class EpisodePlayerFragment : Fragment() {
 
   override fun onDestroyView() {
     super.onDestroyView()
+    releaseWakeLock()
     _databinding = null
   }
 }
