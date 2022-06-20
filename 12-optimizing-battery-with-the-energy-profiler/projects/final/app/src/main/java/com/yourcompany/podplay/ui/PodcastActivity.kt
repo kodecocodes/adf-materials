@@ -93,7 +93,6 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
     addBackStackListener()
     scheduleJobs()
 
-    // TODO: Chapter 11 - Prevent unnecessary network calls
     performSearch("")
   }
 
@@ -165,7 +164,6 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
       setRequiresCharging(true)
     }.build()
 
-    // TODO: Chapter 8 - Initially set interval to 5 min to be debugged and fixed with WorkManager
     val request = PeriodicWorkRequestBuilder<EpisodeUpdateWorker>(
         1, TimeUnit.HOURS)
         .setConstraints(constraints)
@@ -292,7 +290,6 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   private fun createPodcastDetailsFragment(): PodcastDetailsFragment {
     var podcastDetailsFragment = supportFragmentManager.findFragmentByTag(TAG_DETAILS_FRAGMENT) as PodcastDetailsFragment?
 
-    // TODO: Chapter 10 - Disable null check for introducing memory leaks to resolve later
     if (podcastDetailsFragment == null) {
       podcastDetailsFragment = PodcastDetailsFragment.newInstance()
     }
