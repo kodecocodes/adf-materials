@@ -67,7 +67,7 @@ import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
 
 class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
-    OnPodcastDetailsListener {
+  OnPodcastDetailsListener {
 
   private val searchViewModel by viewModels<SearchViewModel>()
   private val podcastViewModel by viewModels<PodcastViewModel>()
@@ -151,12 +151,15 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
 
     // TODO: Chapter 8 - Initially set interval to 5 min to be debugged and fixed with WorkManager
     val request = PeriodicWorkRequestBuilder<EpisodeUpdateWorker>(
-        1, TimeUnit.HOURS)
-        .setConstraints(constraints)
-        .build()
+      1, TimeUnit.HOURS
+    )
+      .setConstraints(constraints)
+      .build()
 
-    WorkManager.getInstance(this).enqueueUniquePeriodicWork(TAG_EPISODE_UPDATE_JOB,
-        ExistingPeriodicWorkPolicy.REPLACE, request)
+    WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+      TAG_EPISODE_UPDATE_JOB,
+      ExistingPeriodicWorkPolicy.REPLACE, request
+    )
   }
 
   private fun showSubscribedPodcasts() {
@@ -166,7 +169,8 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
       databinding.toolbar.title = getString(R.string.subscribed_podcasts)
       podcastListAdapter.setSearchData(podcasts)
 
-      databinding.emptyListViewGroup.visibility = if (podcasts.isEmpty()) View.VISIBLE else View.GONE
+      databinding.emptyListViewGroup.visibility =
+        if (podcasts.isEmpty()) View.VISIBLE else View.GONE
     }
   }
 
@@ -231,8 +235,10 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
     val layoutManager = LinearLayoutManager(this)
     databinding.podcastRecyclerView.layoutManager = layoutManager
 
-    val dividerItemDecoration = DividerItemDecoration(databinding.podcastRecyclerView.context,
-        layoutManager.orientation)
+    val dividerItemDecoration = DividerItemDecoration(
+      databinding.podcastRecyclerView.context,
+      layoutManager.orientation
+    )
     databinding.podcastRecyclerView.addItemDecoration(dividerItemDecoration)
 
     podcastListAdapter = PodcastListAdapter(null, this, this)
@@ -247,8 +253,10 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   private fun showDetailsFragment() {
     val podcastDetailsFragment = createPodcastDetailsFragment()
 
-    supportFragmentManager.beginTransaction().add(R.id.podcastDetailsContainer,
-        podcastDetailsFragment, TAG_DETAILS_FRAGMENT).addToBackStack("DetailsFragment").commit()
+    supportFragmentManager.beginTransaction().add(
+      R.id.podcastDetailsContainer,
+      podcastDetailsFragment, TAG_DETAILS_FRAGMENT
+    ).addToBackStack("DetailsFragment").commit()
     databinding.podcastRecyclerView.visibility = View.INVISIBLE
     searchMenuItem.isVisible = false
   }
@@ -256,8 +264,10 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   private fun showPlayerFragment() {
     val episodePlayerFragment = createEpisodePlayerFragment()
 
-    supportFragmentManager.beginTransaction().replace(R.id.podcastDetailsContainer,
-        episodePlayerFragment, TAG_PLAYER_FRAGMENT).addToBackStack("PlayerFragment").commit()
+    supportFragmentManager.beginTransaction().replace(
+      R.id.podcastDetailsContainer,
+      episodePlayerFragment, TAG_PLAYER_FRAGMENT
+    ).addToBackStack("PlayerFragment").commit()
     databinding.podcastRecyclerView.visibility = View.INVISIBLE
     searchMenuItem.isVisible = false
   }
@@ -274,7 +284,8 @@ class PodcastActivity : AppCompatActivity(), PodcastListAdapterListener,
   }
 
   private fun createPodcastDetailsFragment(): PodcastDetailsFragment {
-    var podcastDetailsFragment = supportFragmentManager.findFragmentByTag(TAG_DETAILS_FRAGMENT) as PodcastDetailsFragment?
+    var podcastDetailsFragment =
+      supportFragmentManager.findFragmentByTag(TAG_DETAILS_FRAGMENT) as PodcastDetailsFragment?
 
     // TODO: Chapter 10 - Disable null check for introducing memory leaks to resolve later
     if (podcastDetailsFragment == null) {

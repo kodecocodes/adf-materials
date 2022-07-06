@@ -44,17 +44,17 @@ import com.yourcompany.podplay.util.HtmlUtils
 import com.yourcompany.podplay.viewmodel.PodcastViewModel
 
 class EpisodeListAdapter(
-    private var episodeViewList: List<PodcastViewModel.EpisodeViewData>?,
-    private val episodeListAdapterListener: EpisodeListAdapterListener) :
-    RecyclerView.Adapter<EpisodeListAdapter.ViewHolder>() {
+  private var episodeViewList: List<PodcastViewModel.EpisodeViewData>?,
+  private val episodeListAdapterListener: EpisodeListAdapterListener
+) : RecyclerView.Adapter<EpisodeListAdapter.ViewHolder>() {
 
   interface EpisodeListAdapterListener {
     fun onSelectedEpisode(episodeViewData: PodcastViewModel.EpisodeViewData)
   }
 
   inner class ViewHolder(
-      databinding: EpisodeItemBinding,
-      private val episodeListAdapterListener: EpisodeListAdapterListener
+    databinding: EpisodeItemBinding,
+    private val episodeListAdapterListener: EpisodeListAdapterListener
   ) : RecyclerView.ViewHolder(databinding.root) {
 
     init {
@@ -73,7 +73,13 @@ class EpisodeListAdapter(
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeListAdapter.ViewHolder {
-    return ViewHolder(EpisodeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false), episodeListAdapterListener)
+    return ViewHolder(
+      EpisodeItemBinding.inflate(
+        LayoutInflater.from(parent.context),
+        parent,
+        false
+      ), episodeListAdapterListener
+    )
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
