@@ -46,8 +46,7 @@ import com.yourcompany.podplay.viewmodel.PodcastViewModel
 class EpisodeListAdapter(
   private var episodeViewList: List<PodcastViewModel.EpisodeViewData>?,
   private val episodeListAdapterListener: EpisodeListAdapterListener
-) :
-  RecyclerView.Adapter<EpisodeListAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<EpisodeListAdapter.ViewHolder>() {
 
   interface EpisodeListAdapterListener {
     fun onSelectedEpisode(episodeViewData: PodcastViewModel.EpisodeViewData)

@@ -68,7 +68,6 @@ import com.yourcompany.podplay.service.PodplayMediaService
 import com.yourcompany.podplay.util.HtmlUtils
 import com.yourcompany.podplay.viewmodel.PodcastViewModel
 
-
 class EpisodePlayerFragment : Fragment() {
 
   private var _databinding: FragmentEpisodePlayerBinding? = null
