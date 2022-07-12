@@ -59,9 +59,9 @@ class RssFeedService private constructor() {
     interceptor.level = HttpLoggingInterceptor.Level.BODY
 
     val client = OkHttpClient().newBuilder()
-        .connectTimeout(30, TimeUnit.SECONDS)
-        .writeTimeout(30, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
+      .connectTimeout(30, TimeUnit.SECONDS)
+      .writeTimeout(30, TimeUnit.SECONDS)
+      .readTimeout(30, TimeUnit.SECONDS)
 
     if (BuildConfig.DEBUG) {
       client.addInterceptor(interceptor)
@@ -70,8 +70,8 @@ class RssFeedService private constructor() {
     client.build()
 
     val retrofit = Retrofit.Builder()
-        .baseUrl("${xmlFileURL.split("?")[0]}/")
-        .build()
+      .baseUrl("${xmlFileURL.split("?")[0]}/")
+      .build()
     service = retrofit.create(FeedService::class.java)
 
     val result = service.getFeed(xmlFileURL)
@@ -108,9 +108,9 @@ class RssFeedService private constructor() {
             "link" -> currentItem.link = node.textContent
             "enclosure" -> {
               currentItem.url = node.attributes.getNamedItem("url")
-                  .textContent
+                .textContent
               currentItem.type = node.attributes.getNamedItem("type")
-                  .textContent
+                .textContent
             }
           }
         }
@@ -122,7 +122,7 @@ class RssFeedService private constructor() {
           "itunes:summary" -> rssFeedResponse.summary = node.textContent
           "item" -> rssFeedResponse.episodes?.add(RssFeedResponse.EpisodeResponse())
           "pubDate" -> rssFeedResponse.lastUpdated =
-              DateUtils.xmlDateToDate(node.textContent)
+            DateUtils.xmlDateToDate(node.textContent)
         }
       }
     }
@@ -142,8 +142,8 @@ class RssFeedService private constructor() {
 
 interface FeedService {
   @Headers(
-      "Content-Type: application/xml; charset=utf-8",
-      "Accept: application/xml"
+    "Content-Type: application/xml; charset=utf-8",
+    "Accept: application/xml"
   )
   @GET
   suspend fun getFeed(@Url xmlFileURL: String): Response<ResponseBody>

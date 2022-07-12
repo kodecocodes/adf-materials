@@ -51,9 +51,9 @@ interface ItunesService {
   companion object {
     val instance: ItunesService by lazy {
       val client = OkHttpClient().newBuilder()
-          .connectTimeout(30, TimeUnit.SECONDS)
-          .writeTimeout(30, TimeUnit.SECONDS)
-          .readTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
       if (BuildConfig.DEBUG) {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -61,10 +61,10 @@ interface ItunesService {
       }
 
       val retrofit = Retrofit.Builder()
-          .client(client.build())
-          .baseUrl("https://itunes.apple.com")
-          .addConverterFactory(GsonConverterFactory.create())
-          .build()
+        .client(client.build())
+        .baseUrl("https://itunes.apple.com")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
       retrofit.create(ItunesService::class.java)
     }
   }
