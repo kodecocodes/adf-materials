@@ -53,8 +53,7 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
 
   private fun itunesPodcastToPodcastSummaryView(
     itunesPodcast: PodcastResponse.ItunesPodcast
-  ):
-      PodcastSummaryViewData {
+  ): PodcastSummaryViewData {
     return PodcastSummaryViewData(
       itunesPodcast.collectionCensoredName,
       DateUtils.jsonDateToShortDate(itunesPodcast.releaseDate),
