@@ -1,0 +1,204 @@
+<!--
+  ~ Copyright (c) 2022 Razeware LLC
+  ~
+  ~  Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~   of this software and associated documentation files (the "Software"), to deal
+  ~   in the Software without restriction, including without limitation the rights
+  ~   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~   copies of the Software, and to permit persons to whom the Software is
+  ~   furnished to do so, subject to the following conditions:
+  ~
+  ~  The above copyright notice and this permission notice shall be included in
+  ~  all copies or substantial portions of the Software.
+  ~
+  ~   Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
+  ~   distribute, sublicense, create a derivative work, and/or sell copies of the
+  ~   Software in any work that is designed, intended, or marketed for pedagogical or
+  ~   instructional purposes related to programming, coding, application development,
+  ~   or information technology.  Permission for such use, copying, modification,
+  ~   merger, publication, distribution, sublicensing, creation of derivative works,
+  ~   or sale is expressly withheld.
+  ~
+  ~   This project and source code may use libraries or frameworks that are
+  ~   released under various Open-Source licenses. Use of those libraries and
+  ~   frameworks are governed by their own individual licenses.
+  ~
+  ~   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~   THE SOFTWARE.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <SurfaceView
+    android:id="@+id/videoSurfaceView"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:visibility="invisible"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+    android:id="@+id/episodeDescTextView"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:background="@android:color/white"
+    android:padding="8dp"
+    android:scrollbars="vertical"
+    app:layout_constraintBottom_toTopOf="@+id/playerControls"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/headerView"
+    tools:text="Episode description" />
+
+  <RelativeLayout
+    android:id="@+id/headerView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#eeeeee"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <ImageView
+      android:id="@+id/episodeImageView"
+      android:layout_width="60dp"
+      android:layout_height="60dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      android:contentDescription="@string/episode_thumbnail"
+      android:src="@android:drawable/ic_menu_report_image" />
+
+    <TextView
+      android:id="@+id/episodeTitleTextView"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_alignBottom="@+id/episodeImageView"
+      android:layout_alignTop="@+id/episodeImageView"
+      android:layout_marginEnd="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_toEndOf="@+id/episodeImageView"
+      android:text="" />
+  </RelativeLayout>
+
+  <LinearLayout
+    android:id="@+id/playerControls"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/background_dark"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <Button
+        android:id="@+id/playToggleButton"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_play_pause_toggle"
+        android:scaleType="fitCenter"
+        android:layout_centerInParent="true" />
+
+      <ImageButton
+        android:id="@+id/forwardButton"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/skip_forward"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_forward_30_white"
+        android:layout_toEndOf="@id/playToggleButton" />
+
+      <ImageButton
+        android:id="@+id/replayButton"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/replay_button"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_replay_10_white"
+        android:layout_toStartOf="@id/playToggleButton" />
+
+      <Button
+        android:id="@+id/speedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:text="@string/_1x"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+
+      <TextView
+        android:id="@+id/currentTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/_0_00"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+
+      <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:progressBackgroundTint="@android:color/white" />
+
+      <TextView
+        android:id="@+id/endTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/_0_00"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+    </LinearLayout>
+  </LinearLayout>
+
+  <ProgressBar
+    android:id="@+id/progressBar"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
