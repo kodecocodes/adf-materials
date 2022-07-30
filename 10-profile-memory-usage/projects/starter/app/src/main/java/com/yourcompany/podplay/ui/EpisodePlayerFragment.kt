@@ -100,9 +100,11 @@ class EpisodePlayerFragment : Fragment() {
     }
   }
 
-  override fun onCreateView(inflater: LayoutInflater,
-                            container: ViewGroup?,
-                            savedInstanceState: Bundle?): View {
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View {
     _databinding = FragmentEpisodePlayerBinding.inflate(inflater, container, false)
     return databinding.root
   }
@@ -140,7 +142,7 @@ class EpisodePlayerFragment : Fragment() {
     if (MediaControllerCompat.getMediaController(fragmentActivity) != null) {
       mediaControllerCallback?.let {
         MediaControllerCompat.getMediaController(fragmentActivity)
-            .unregisterCallback(it)
+          .unregisterCallback(it)
       }
     }
     if (isVideo) {
@@ -167,7 +169,8 @@ class EpisodePlayerFragment : Fragment() {
     }
     databinding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
       override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-        databinding.currentTimeTextView.text = DateUtils.formatElapsedTime((progress / 1000).toLong())
+        databinding.currentTimeTextView.text =
+          DateUtils.formatElapsedTime((progress / 1000).toLong())
       }
 
       override fun onStartTrackingTouch(seekBar: SeekBar) {
@@ -201,8 +204,10 @@ class EpisodePlayerFragment : Fragment() {
     if (controller != null) {
       val metadata = controller.metadata
       if (metadata != null) {
-        handleStateChange(controller.playbackState.state,
-            controller.playbackState.position, playerSpeed)
+        handleStateChange(
+          controller.playbackState.state,
+          controller.playbackState.position, playerSpeed
+        )
         updateControlsFromMetadata(controller.metadata)
       }
     }
@@ -230,10 +235,10 @@ class EpisodePlayerFragment : Fragment() {
       mediaPlayer = MediaPlayer()
       mediaPlayer?.let { mediaPlayer ->
         mediaPlayer.setAudioAttributes(
-            AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_MEDIA)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-                .build()
+          AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_MEDIA)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+            .build()
         )
         mediaPlayer.setDataSource(podcastViewModel.activeEpisodeViewData?.mediaUrl)
         mediaPlayer.setOnPreparedListener {
@@ -298,7 +303,8 @@ class EpisodePlayerFragment : Fragment() {
     }
 
     progressAnimator = ValueAnimator.ofInt(
-        progress, episodeDuration.toInt())
+      progress, episodeDuration.toInt()
+    )
     progressAnimator?.let { animator ->
       animator.duration = timeRemaining.toLong()
       animator.interpolator = LinearInterpolator()
@@ -372,8 +378,8 @@ class EpisodePlayerFragment : Fragment() {
     databinding.episodeDescTextView.movementMethod = ScrollingMovementMethod()
     val fragmentActivity = activity as FragmentActivity
     Glide.with(fragmentActivity)
-        .load(podcastViewModel.podcastLiveData.value?.imageUrl)
-        .into(databinding.episodeImageView)
+      .load(podcastViewModel.podcastLiveData.value?.imageUrl)
+      .into(databinding.episodeImageView)
 
     val speedButtonText = "${playerSpeed}x"
     databinding.speedButton.text = speedButtonText
@@ -423,10 +429,12 @@ class EpisodePlayerFragment : Fragment() {
 
   private fun initMediaBrowser() {
     val fragmentActivity = activity as FragmentActivity
-    mediaBrowser = MediaBrowserCompat(fragmentActivity,
-        ComponentName(fragmentActivity, PodplayMediaService::class.java),
-        MediaBrowserCallBacks(),
-        null)
+    mediaBrowser = MediaBrowserCompat(
+      fragmentActivity,
+      ComponentName(fragmentActivity, PodplayMediaService::class.java),
+      MediaBrowserCallBacks(),
+      null
+    )
   }
 
   inner class MediaBrowserCallBacks : MediaBrowserCompat.ConnectionCallback() {

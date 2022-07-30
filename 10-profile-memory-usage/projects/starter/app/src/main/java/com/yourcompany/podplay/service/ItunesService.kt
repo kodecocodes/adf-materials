@@ -47,9 +47,9 @@ interface ItunesService {
   companion object {
     val instance: ItunesService by lazy {
       val retrofit = Retrofit.Builder()
-          .baseUrl("https://itunes.apple.com")
-          .addConverterFactory(GsonConverterFactory.create())
-          .build()
+        .baseUrl("https://itunes.apple.com")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
       retrofit.create(ItunesService::class.java)
     }
   }
